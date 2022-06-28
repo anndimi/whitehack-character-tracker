@@ -1,9 +1,10 @@
 import React from 'react'
+import { PageTitle } from '../styles/global'
 
 const CharactersPage = () => {
   return (
     <>
-      <p>this is characters, yes?</p>
+      <PageTitle>this is characters, yes?</PageTitle>
     </>
   )
 }
