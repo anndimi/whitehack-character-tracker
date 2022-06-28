@@ -14,11 +14,44 @@ dotenv.config()
 app.use(cors())
 
 async function main() {
-  const connectionUri = process.env.MONGO_URL
+  const connectionUri = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/'
   const client = new MongoClient(connectionUri)
   await client.connect()
   const databases = await client.db().admin().listDatabases()
+  console.log(databases)
 }
+
+//Function to fetch characters from db
+async function fetchWhitehackCharacters() {
+  const connectionUri = process.env.MONGO_URL
+  const client = new MongoClient(connectionUri)
+  await client.connect()
+
+  const findWhitehackCharacters = client
+    .db('characters-tracker')
+    .collection('characters')
+    .find()
+
+  let charactersArray = []
+
+  await findWhitehackCharacters.forEach((character) =>
+    charactersArray.push(character)
+  )
+
+  console.log(charactersArray)
+
+  return charactersArray
+}
+
+//Characters endpoint
+app.get('/characters'),
+  async (req, res) => {
+    const whitehackCharacters = await fetchWhitehackCharacters()
+
+    console.log(whitehackCharacters)
+
+    res.send(JSON.stringify(whitehackCharacters))
+  }
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
