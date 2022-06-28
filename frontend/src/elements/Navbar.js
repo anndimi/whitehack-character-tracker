@@ -22,4 +22,13 @@ const NavbarContainer = styled.div`
   margin: 0 auto;
   width: 50%;
   max-width: 1000px;
+  padding: 40px;
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `

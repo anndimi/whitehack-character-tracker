@@ -1,9 +1,10 @@
 import React from 'react'
+import { PageTitle } from '../styles/global'
 
 const Home = () => {
   return (
     <>
-      <p>this is home, yes?</p>
+      <PageTitle>Whitehack Character Tracker</PageTitle>
     </>
   )
 }
