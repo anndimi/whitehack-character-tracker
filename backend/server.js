@@ -14,7 +14,7 @@ dotenv.config()
 app.use(cors())
 
 async function main() {
-  const connectionUri = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/'
+  const connectionUri = process.env.MONGO_URL
   const client = new MongoClient(connectionUri)
   await client.connect()
   const databases = await client.db().admin().listDatabases()
@@ -23,7 +23,7 @@ async function main() {
 
 //Function to fetch characters from db
 async function fetchWhitehackCharacters() {
-  const connectionUri = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/'
+  const connectionUri = process.env.MONGO_URL
   const client = new MongoClient(connectionUri)
   await client.connect()
 
