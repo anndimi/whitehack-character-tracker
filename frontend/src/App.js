@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './elements/Navbar'
 import Home from './pages/Home'
@@ -8,6 +9,14 @@ import ErrorPage from './pages/ErrorPage'
 // import './App.css'
 
 function App() {
+  const [characters, setCharacters] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8080/characters')
+      .then((res) => res.json())
+      .then((data) => setCharacters(data))
+  })
+
   return (
     <div>
       <header></header>
@@ -15,7 +24,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/characters" element={<CharactersPage />} />
+          <Route
+            path="/characters"
+            element={<CharactersPage characters={characters} />}
+          />
           <Route
             path="/characters/character/:name"
             element={<CharacterPage />}
