@@ -3,18 +3,21 @@
 // import dotenv from 'dotenv'
 const express = require('express')
 const cors = require('cors')
-const dotenv = require('dotenv')
+require('dotenv').config()
 const { MongoClient } = require('mongodb')
+const { defineSchemas } = require('./database')
 
 const port = process.env.PORT
 const app = express()
 
 app.use(express.json())
-dotenv.config()
 app.use(cors())
 
 async function main() {
-  const connectionUri = process.env.MONGO_URL
+  // Import ODM object and schemas
+  const { mongoose, Character, Class } = await defineSchemas()
+
+  const connectionUri = process.env.MONGO_URI
   const client = new MongoClient(connectionUri)
   await client.connect()
   const databases = await client.db().admin().listDatabases()
@@ -23,7 +26,7 @@ async function main() {
 
 //Function to fetch characters from db
 async function fetchWhitehackCharacters() {
-  const connectionUri = process.env.MONGO_URL
+  const connectionUri = process.env.MONGO_URI
   const client = new MongoClient(connectionUri)
   await client.connect()
 
@@ -41,6 +44,8 @@ async function fetchWhitehackCharacters() {
   return charactersArray
 }
 
+main()
+
 //Characters endpoint
 app.get('/characters', async (req, res) => {
   const whitehackCharacters = await fetchWhitehackCharacters()
@@ -51,5 +56,5 @@ app.get('/characters', async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
+  console.log(`Server running on port ${port}`)
 })
