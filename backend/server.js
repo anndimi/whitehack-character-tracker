@@ -27,7 +27,7 @@ async function fetchWhitehackCharacters() {
   const client = new MongoClient(connectionUri)
   await client.connect()
 
-  const findWhitehackCharacters = client
+  const findWhitehackCharacters = await client
     .db('characters-tracker')
     .collection('characters')
     .find()
@@ -38,20 +38,17 @@ async function fetchWhitehackCharacters() {
     charactersArray.push(character)
   )
 
-  console.log(charactersArray)
-
   return charactersArray
 }
 
 //Characters endpoint
-app.get('/characters'),
-  async (req, res) => {
-    const whitehackCharacters = await fetchWhitehackCharacters()
+app.get('/characters', async (req, res) => {
+  const whitehackCharacters = await fetchWhitehackCharacters()
 
-    console.log(whitehackCharacters)
+  console.log(whitehackCharacters)
 
-    res.send(JSON.stringify(whitehackCharacters))
-  }
+  res.send(JSON.stringify(whitehackCharacters))
+})
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
