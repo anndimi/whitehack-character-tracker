@@ -7,8 +7,8 @@ const Navbar = () => {
     <>
       <NavbarContainer>
         <Link to="/">Home</Link>
-        <Link to="/characters">Characters</Link>
-        <Link to="/graveyard">Graveyard</Link>
+        <Link to="characters">Characters</Link>
+        <Link to="graveyard">Graveyard</Link>
       </NavbarContainer>
     </>
   )
