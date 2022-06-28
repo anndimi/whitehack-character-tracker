@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import CharactersPage from './pages/CharactersPage'
 import CharacterPage from './pages/CharacterPage'
 import GraveyardPage from './pages/GraveyardPage'
+import ErrorPage from './pages/ErrorPage'
 // import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             element={<CharacterPage />}
           />
           <Route path="/graveyard" element={<GraveyardPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </div>
