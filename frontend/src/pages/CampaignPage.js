@@ -1,12 +1,11 @@
 import React from 'react'
 import Navbar from '../elements/Navbar'
-import { PageTitle } from '../styles/global'
+import styled from 'styled-components'
 
 const CampaignPage = () => {
   return (
     <>
       <Navbar />
-      <PageTitle>this is campaign, yes?</PageTitle>
     </>
   )
 }

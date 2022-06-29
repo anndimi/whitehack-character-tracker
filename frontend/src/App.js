@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 import Home from './pages/Home'
 import CampaignPage from './pages/CampaignPage'
 import CharactersPage from './pages/CharactersPage'
 import CharacterPage from './pages/CharacterPage'
 import GraveyardPage from './pages/GraveyardPage'
 import ErrorPage from './pages/ErrorPage'
-// import './App.css'
+import styled from 'styled-components'
+import HeroImg from './elements/HeroImg'
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -16,31 +16,37 @@ function App() {
     fetch('http://localhost:8080/characters')
       .then((res) => res.json())
       .then((data) => setCharacters(data))
-  })
+  }, [])
 
   return (
-    <div>
-      <header></header>
+    <AppContainer>
       <BrowserRouter>
+        <HeroImg />
         <Routes>
+          <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path="/campaign" element={<CampaignPage />}>
+          <Route path="campaign" element={<CampaignPage />}>
+            <Route index element={<CharactersPage />} />
             <Route
               path="characters"
               element={<CharactersPage characters={characters} />}
-            />
-            <Route
-              path="characters/character/:name"
-              element={<CharacterPage />}
-            />
+            >
+              <Route path="character/:name" element={<CharacterPage />} />
+            </Route>
+
             <Route path="graveyard" element={<GraveyardPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AppContainer>
   )
 }
 
 export default App
+
+const AppContainer = styled.div`
+  height: 100vh;
+`

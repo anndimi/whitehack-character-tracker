@@ -1,13 +1,11 @@
 import React from 'react'
-import { PageTitle } from '../styles/global'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const CharactersPage = ({ characters }) => {
   return (
     <>
-      <PageTitle>this is characters, yes?</PageTitle>
-      {characters.map((character) => (
+      {/* {characters.map((character) => (
         <CharacterListContainer key={character._id}>
           <Link
             to={`/characters/character/${character._id}`}
@@ -16,7 +14,7 @@ const CharactersPage = ({ characters }) => {
             {character.name}
           </Link>
         </CharacterListContainer>
-      ))}
+      ))} */}
     </>
   )
 }
