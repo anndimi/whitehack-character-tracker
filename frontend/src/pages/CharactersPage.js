@@ -7,7 +7,7 @@ const CharactersPage = ({ characters }) => {
   return (
     <>
       <PageTitle>this is characters, yes?</PageTitle>
-      {characters.map((character) => (
+      {/* {characters.map((character) => (
         <CharacterListContainer key={character._id}>
           <Link
             to={`/characters/character/${character._id}`}
@@ -16,7 +16,7 @@ const CharactersPage = ({ characters }) => {
             {character.name}
           </Link>
         </CharacterListContainer>
-      ))}
+      ))} */}
     </>
   )
 }

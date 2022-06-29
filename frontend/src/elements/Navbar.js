@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Navbar = () => {
@@ -10,13 +10,14 @@ const Navbar = () => {
         <Link to="characters">Characters</Link>
         <Link to="graveyard">Graveyard</Link>
       </NavbarContainer>
+      <Outlet />
     </>
   )
 }
 
 export default Navbar
 
-const NavbarContainer = styled.div`
+const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
