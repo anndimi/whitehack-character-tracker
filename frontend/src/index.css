@@ -1,6 +1,6 @@
 body, html {
   height: 100%;
- 
+  user-select: none;
 }
 
 body {
@@ -8,7 +8,7 @@ body {
   font-family: 'IM Fell English', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-color:rgb(221, 208, 193);
 }
 
 code {

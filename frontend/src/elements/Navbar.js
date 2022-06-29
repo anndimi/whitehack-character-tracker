@@ -33,9 +33,10 @@ const NavbarWrapper = styled.nav`
   padding: 40px;
   z-index: 9999;
   a {
-    color: white;
+    color: rgb(221, 208, 193);
     text-decoration: none;
     font-size: 24px;
+    letter-spacing: 1px;
     :hover {
       text-decoration: underline;
     }

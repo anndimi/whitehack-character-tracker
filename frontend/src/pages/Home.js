@@ -5,7 +5,8 @@ import styled from 'styled-components'
 const Home = () => {
   return (
     <>
-      <HomePageContainer>
+      {/* <HomePageContainer>
+        <h2>Go to an existing campaign or create a new one!</h2>
         <FormsContainer>
           <Form>
             <label htmlFor="existingCampaign"></label>
@@ -33,40 +34,51 @@ const Home = () => {
             </button>
           </Form>
         </FormsContainer>
-      </HomePageContainer>
+      </HomePageContainer> */}
     </>
   )
 }
 
 export default Home
 
-const HomePageContainer = styled.div``
+// const HomePageContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   margin-top: 50px;
+//   width: 100%;
+// `
 
-const FormsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-`
+// const FormsContainer = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 20px;
+//   width: 100%;
+// `
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  width: 100%;
-  max-width: 800px;
-  input {
-    width: 80%;
-    max-width: 400px;
-  }
-  button {
-    width: 60%;
-    max-width: 200px;
-  }
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`
+// const Form = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   gap: 15px;
+//   width: 100%;
+//   max-width: 800px;
+//   input {
+//     width: 100%;
+//     max-width: 400px;
+//     height: 30px;
+//     font-family: inherit;
+//   }
+//   button {
+//     width: 80%;
+//     max-width: 200px;
+//     font-family: inherit;
+//   }
+//   a {
+//     text-decoration: none;
+//     color: black;
+//     font-size: 20px;
+//   }
+// `
