@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import homeGif from '../assets/gifs/home.gif'
 import campaignGif from '../assets/gifs/campaign.gif'
 import graveGif from '../assets/gifs/graveyard.gif'
+import herosGif from '../assets/gifs/characters.gif'
 import { Link } from 'react-router-dom'
 
 const HeroImg = () => {
@@ -47,12 +48,17 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (
-    location.pathname === '/campaign/characters' ||
-    location.pathname === '/campaign'
-  ) {
+  } else if (location.pathname === '/campaign') {
     return (
-      <HeroImgContainer imgObj={campaignGif}>
+      <HeroImgContainer imgObj={campaignGif} style={{ height: '45%' }}>
+        <HeroTitle>
+          <h1>The Story</h1>
+        </HeroTitle>
+      </HeroImgContainer>
+    )
+  } else if (location.pathname === '/campaign/characters') {
+    return (
+      <HeroImgContainer imgObj={herosGif} style={{ height: '45%' }}>
         <HeroTitle>
           <h1>The Fellowship of Heroes</h1>
         </HeroTitle>
@@ -60,7 +66,7 @@ const HeroImg = () => {
     )
   } else if (location.pathname === '/campaign/graveyard') {
     return (
-      <HeroImgContainer imgObj={graveGif}>
+      <HeroImgContainer imgObj={graveGif} style={{ height: '45%' }}>
         <HeroTitle>
           <h1>The deceased... May they rest in peace..</h1>
         </HeroTitle>

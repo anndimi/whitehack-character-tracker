@@ -7,6 +7,7 @@ const Navbar = () => {
     <NavbarContainer>
       <NavbarWrapper>
         <Link to="/">Home</Link>
+        <Link to="/campaign">Campaign</Link>
         <Link to="characters">Characters</Link>
         <Link to="graveyard">Graveyard</Link>
       </NavbarWrapper>
@@ -28,7 +29,7 @@ const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 50%;
+  width: 60%;
   max-width: 1000px;
   padding: 40px;
   z-index: 9999;
