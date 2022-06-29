@@ -1,5 +1,3 @@
-const { sequelize, Character, Class } = require('./models')
+const { dropAndSync } = require('./helpers')
 
-// FIXME drop tables and re-sync
-Character.sync({ force: true })
-Class.sync({ force: true })
+dropAndSync()

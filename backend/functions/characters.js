@@ -1,8 +1,8 @@
 // Initialize and configure database
 const { sequelize, Character } = require('../database/models')
 
-// FIXME use uuid instead of id for obscurity
 const getCharacter = async function (id) {
+  // FIXME use uuid instead of id for obscurity
   return Character.findOne({
     where: {
       id: id,
@@ -26,15 +26,13 @@ const createCharacter = async function (data) {
 }
 
 const updateCharacter = async function (id, data) {
-  return getCharacter(id).then((character) => {
-    character.update({ data })
-  })
+  const character = await getCharacter(id)
+  return character.update({ data })
 }
 
 const deleteCharacter = async function (id) {
-  return getCharacter(id).then((character) => {
-    return character.destroy()
-  })
+  const character = await getCharacter(id)
+  return character.destroy()
 }
 
 module.exports = {
