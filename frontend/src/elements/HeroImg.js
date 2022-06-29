@@ -24,7 +24,7 @@ const HeroImg = () => {
                   type="text"
                   id="existingCampaign"
                   name="existingCampaign "
-                  placeholder="Campaign name"
+                  placeholder="Your campaign"
                 ></input>
                 <button>
                   <Link to="/campaign">Go to campaign</Link>
@@ -37,7 +37,7 @@ const HeroImg = () => {
                   type="text"
                   id="createCampaign"
                   name="createCampaign "
-                  placeholder="Campaign name"
+                  placeholder="New campaign"
                 ></input>
                 <button>
                   <Link to="/campaign">Create campaign</Link>
