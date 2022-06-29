@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 import Home from './pages/Home'
 import CampaignPage from './pages/CampaignPage'
 import CharactersPage from './pages/CharactersPage'
 import CharacterPage from './pages/CharacterPage'
 import GraveyardPage from './pages/GraveyardPage'
 import ErrorPage from './pages/ErrorPage'
-// import './App.css'
+import styled from 'styled-components'
+import HeroImg from './elements/HeroImg'
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -19,9 +19,9 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <header></header>
+    <AppContainer>
       <BrowserRouter>
+        <HeroImg />
         <Routes>
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
@@ -41,8 +41,12 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AppContainer>
   )
 }
 
 export default App
+
+const AppContainer = styled.div`
+  height: 100vh;
+`
