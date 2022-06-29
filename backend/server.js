@@ -1,79 +1,77 @@
+// Environment configuration
+require('dotenv').config()
+
+// Initialize and configure express server
 const express = require('express')
 const cors = require('cors')
-require('dotenv').config()
-const { MongoClient } = require('mongodb')
-const { defineSchemas } = require('./database')
-
-const port = process.env.PORT
 const app = express()
-
 app.use(express.json())
 app.use(cors())
 
-async function main() {
-  // Import ODM object and schemas
-  const { mongoose, Character, Class } = await defineSchemas()
-}
+// Import functions
+const {
+  getCharacter,
+  getCharacters,
+  createCharacter,
+  updateCharacter,
+  deleteCharacter,
+} = require('./functions/characters')
 
-//Function to fetch all characters from db
-async function fetchWhitehackCharacters() {
-  const connectionUri = process.env.MONGO_URI
-  const client = new MongoClient(connectionUri)
-  await client.connect()
-
-  const findWhitehackCharacters = await client
-    .db('characters-tracker')
-    .collection('characters')
-    .find()
-
-  let charactersArray = []
-
-  await findWhitehackCharacters.forEach((character) =>
-    charactersArray.push(character)
-  )
-
-  return charactersArray
-}
-
-main()
-
-//Characters endpoint
-//Function to fetch single character from debugger
-async function fetchSingleWhitehackCharacter(id) {
-  const connectionUri = process.env.MONGO_URI
-  const client = new MongoClient(connectionUri)
-  await client.connect()
-
-  const query = { _id: id }
-
-  const findSingleWhitehackCharacter = await client
-    .db('characters-tracker')
-    .collection('characters')
-    .find(query)
-
-  console.log(findSingleWhitehackCharacter)
-
-  return findSingleWhitehackCharacter
-}
-
-//All characters endpoint
 app.get('/characters', async (req, res) => {
-  const whitehackCharacters = await fetchWhitehackCharacters()
-
-  console.log(whitehackCharacters)
-
-  res.send(JSON.stringify(whitehackCharacters))
+  await getCharacters().then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
 })
 
-//Single character endpoint
-app.get('/characters/character/:name', async (req, res) => {
-  const characterInfo = await fetchSingleWhitehackCharacter(req.params.id)
-
-  res.send(JSON.stringify(characterInfo))
-
-  return characterInfo
+app.post('/characters', async (req, res) => {
+  await createCharacter(req.body).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
 })
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
+app.get('/characters/:id', async (req, res) => {
+  await getCharacter(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.patch('/characters/:id', async (req, res) => {
+  await updateCharacter(req.params.id, req.body).then(
+    (result) => {
+      return res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.delete('/characters/:id', async (req, res) => {
+  await deleteCharacter(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`)
 })
