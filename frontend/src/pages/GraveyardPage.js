@@ -49,6 +49,7 @@ const PageWrapper = styled.div`
   margin: auto;
   width: 80%;
   max-width: 1000px;
+  margin-bottom: 100px;
   h3 {
     font-size: 20px;
     margin: 0;
@@ -63,6 +64,9 @@ const GraveyardContainer = styled.div`
   gap: 20px;
   margin: auto;
   text-align: center;
+  border-bottom: 4px double #393939;
+  border-top: 4px double #393939;
+  padding: 30px 0;
   img {
     width: 250px;
   }
