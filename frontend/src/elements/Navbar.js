@@ -1,15 +1,44 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Navbar = () => {
+  let location = useLocation()
+
   return (
     <NavbarContainer>
       <NavbarWrapper>
         <Link to="/">Home</Link>
-        <Link to="/campaign">Campaign</Link>
-        <Link to="characters">Characters</Link>
-        <Link to="graveyard">Graveyard</Link>
+        <Link
+          to="/campaign"
+          style={
+            location.pathname === '/campaign'
+              ? { textDecoration: 'line-through' }
+              : {}
+          }
+        >
+          Campaign
+        </Link>
+        <Link
+          to="characters"
+          style={
+            location.pathname === '/campaign/characters'
+              ? { textDecoration: 'line-through' }
+              : {}
+          }
+        >
+          Characters
+        </Link>
+        <Link
+          to="graveyard"
+          style={
+            location.pathname === '/campaign/graveyard'
+              ? { textDecoration: 'line-through' }
+              : {}
+          }
+        >
+          Graveyard
+        </Link>
       </NavbarWrapper>
       <Outlet />
     </NavbarContainer>
