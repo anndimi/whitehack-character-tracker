@@ -80,15 +80,14 @@ const ModalContainer = styled.div`
 const ModalWrapper = styled.div`
   width: 500px;
   height: fit-content;
-  background-image: url(${modalBg});
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  position: relative;
-  background-position: center;
+  background-color: rgb(221, 208, 193);
 `
 
 const ModalHeader = styled.div`
   text-align: center;
+  h3 {
+    font-family: 'MedievalSharp', cursive;
+  }
 `
 
 const ModalBody = styled.div`

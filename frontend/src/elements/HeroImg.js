@@ -69,7 +69,7 @@ const HeroImg = () => {
         style={{ height: '45%', backgroundPosition: 'top center' }}
       >
         <HeroTitle>
-          <h1>The Fellowship of Heroes</h1>
+          <h1>The Heroes</h1>
         </HeroTitle>
       </HeroImgContainer>
     )
@@ -80,7 +80,7 @@ const HeroImg = () => {
         style={{ height: '45%', backgroundPosition: 'top center' }}
       >
         <HeroTitle>
-          <h1>The deceased...</h1>
+          <h1>The Deceased</h1>
           <h3>May they rest in peace..</h3>
         </HeroTitle>
       </HeroImgContainer>
