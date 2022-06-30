@@ -81,7 +81,7 @@ const HeroImg = () => {
       >
         <HeroTitle>
           <h1>The Deceased</h1>
-          <h3>May they rest in peace..</h3>
+          <h3>Requiescat in pace, heroum..</h3>
         </HeroTitle>
       </HeroImgContainer>
     )
@@ -115,6 +115,9 @@ const HeroTitle = styled.div`
   }
   h2 {
     font-size: 40px;
+  }
+  h3 {
+    font-size: 25px;
   }
 `
 const HomePageContainer = styled.div`

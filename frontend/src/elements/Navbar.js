@@ -32,13 +32,14 @@ const NavbarWrapper = styled.nav`
   margin: 0 auto;
   width: 60%;
   max-width: 1000px;
-  padding-top: 40px;
+  padding: 40px 0;
   z-index: 9999;
   a {
     color: rgb(221, 208, 193);
     text-decoration: none;
     font-size: 24px;
     letter-spacing: 1px;
+    padding: 0 15px;
     :hover {
       text-decoration: line-through;
     }
