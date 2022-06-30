@@ -81,7 +81,6 @@ const HeroImg = () => {
       >
         <HeroTitle>
           <h1>The Deceased</h1>
-          <h3>Requiescat in pace, heroum..</h3>
         </HeroTitle>
       </HeroImgContainer>
     )

@@ -1,26 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
+import gravestone from '../assets/images/gravestone.png'
 
 const GraveyardPage = () => {
   return (
     <PageContainer>
       <PageWrapper>
-        <h1>(List of deceased characters)</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-          blandit turpis cursus in hac habitasse. Malesuada nunc vel risus
-          commodo. Id venenatis a condimentum vitae sapien pellentesque habitant
-          morbi. Eget dolor morbi non arcu risus quis varius. Vestibulum lorem
-          sed risus ultricies tristique nulla aliquet enim tortor. Suspendisse
-          interdum consectetur libero id faucibus nisl. Sodales neque sodales ut
-          etiam sit amet nisl purus. Commodo odio aenean sed adipiscing diam
-          donec adipiscing tristique risus. Aenean euismod elementum nisi quis
-          eleifend quam adipiscing. Id interdum velit laoreet id donec ultrices
-          tincidunt arcu non. In pellentesque massa placerat duis ultricies
-          lacus. Eget egestas purus viverra accumsan in nisl nisi scelerisque.
-        </p>
+        <h1>Requiescat in pace, heroum..</h1>
+        <GraveyardContainer>
+          <GravestoneContainer>
+            <img src={gravestone} />
+            <span>Morwen</span>
+          </GravestoneContainer>
+          <GravestoneContainer>
+            <img src={gravestone} />
+            <span>Eluwaer</span>
+          </GravestoneContainer>
+          <GravestoneContainer>
+            <img src={gravestone} />
+            <span>Sazarioth</span>
+          </GravestoneContainer>
+        </GraveyardContainer>
       </PageWrapper>
     </PageContainer>
   )
@@ -39,4 +40,20 @@ const PageWrapper = styled.div`
   p {
     font-size: 20px;
   }
+`
+
+const GraveyardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  img {
+    width: 250px;
+  }
+`
+
+const GravestoneContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
