@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
+import CharacterModal from '../elements/CharacterModal'
 
 const CharactersPage = ({ characters }) => {
+  const [showModal, setShowModal] = useState(false)
+  console.log(showModal)
   return (
     <PageContainer>
       <PageWrapper>
-        <span>Here is a list of characters</span>
+        <h1>Here is a list of heros</h1>
+        <button type="submit" onClick={() => setShowModal(true)}>
+          Add hero
+        </button>
+        <CharacterModal
+          onClose={() => setShowModal(false)}
+          showModal={showModal}
+        />
         {/* {characters.map((character) => (
         <CharacterListContainer key={character._id}>
           <Link
