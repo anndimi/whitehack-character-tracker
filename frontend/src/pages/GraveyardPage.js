@@ -15,23 +15,23 @@ const GraveyardPage = () => {
         <GraveyardContainer>
           <GravestoneContainer>
             <img src={gravestone1} />
-            <span>Morwen</span>
+            <h3>Morwen</h3>
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone2} />
-            <span>Eluwaer</span>
+            <h3>Eluwaer</h3>
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone3} />
-            <span>Sazarioth</span>
+            <h3>Sazarioth</h3>
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone4} />
-            <span>Sazarioth</span>
+            <h3>Macha</h3>
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone5} />
-            <span>Sazarioth</span>
+            <h3>Doge Tinyshoe</h3>
           </GravestoneContainer>
         </GraveyardContainer>
       </PageWrapper>
@@ -49,16 +49,18 @@ const PageWrapper = styled.div`
   margin: auto;
   width: 80%;
   max-width: 1000px;
-  p {
+  h3 {
     font-size: 20px;
+    margin: 0;
   }
 `
 
 const GraveyardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: baseline;
+  gap: 20px;
   margin: auto;
   text-align: center;
   img {
