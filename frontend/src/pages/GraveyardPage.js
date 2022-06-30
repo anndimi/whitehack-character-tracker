@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
-import gravestone from '../assets/images/gravestone.png'
+import gravestone1 from '../assets/images/gravestone1.png'
+import gravestone2 from '../assets/images/gravestone2.png'
+import gravestone3 from '../assets/images/gravestone3.png'
+import gravestone4 from '../assets/images/gravestone4.png'
+import gravestone5 from '../assets/images/gravestone5.png'
 
 const GraveyardPage = () => {
   return (
@@ -10,15 +14,23 @@ const GraveyardPage = () => {
         <h1>Requiescat in pace, heroum..</h1>
         <GraveyardContainer>
           <GravestoneContainer>
-            <img src={gravestone} />
+            <img src={gravestone1} />
             <span>Morwen</span>
           </GravestoneContainer>
           <GravestoneContainer>
-            <img src={gravestone} />
+            <img src={gravestone2} />
             <span>Eluwaer</span>
           </GravestoneContainer>
           <GravestoneContainer>
-            <img src={gravestone} />
+            <img src={gravestone3} />
+            <span>Sazarioth</span>
+          </GravestoneContainer>
+          <GravestoneContainer>
+            <img src={gravestone4} />
+            <span>Sazarioth</span>
+          </GravestoneContainer>
+          <GravestoneContainer>
+            <img src={gravestone5} />
             <span>Sazarioth</span>
           </GravestoneContainer>
         </GraveyardContainer>
@@ -46,6 +58,7 @@ const GraveyardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: baseline;
   margin: auto;
   text-align: center;
   img {
