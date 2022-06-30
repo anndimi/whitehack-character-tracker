@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   height: 100%;
   user-select: none;
 }
@@ -8,9 +9,19 @@ body {
   font-family: 'IM Fell English', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:rgb(221, 208, 193);
+  background-color: rgb(221, 208, 193);
+  color: #393939;
 }
 
 code {
   font-family: 'IM Fell English', serif;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #393939;
+  border-radius: 10px;
 }

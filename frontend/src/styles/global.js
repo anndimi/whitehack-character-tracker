@@ -6,5 +6,5 @@ export const PageTitle = styled.h1`
 `
 
 export const PageContainer = styled.div`
-  margin-top: 35vh;
+  margin-top: 40vh;
 `

@@ -28,10 +28,11 @@ const NavbarContainer = styled.div`
 const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin: 0 auto;
   width: 60%;
   max-width: 1000px;
-  padding: 40px;
+  padding-top: 40px;
   z-index: 9999;
   a {
     color: rgb(221, 208, 193);
@@ -39,7 +40,7 @@ const NavbarWrapper = styled.nav`
     font-size: 24px;
     letter-spacing: 1px;
     :hover {
-      text-decoration: underline;
+      text-decoration: line-through;
     }
   }
 `

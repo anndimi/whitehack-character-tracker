@@ -99,7 +99,7 @@ const HeroImgContainer = styled.div`
   position: relative;
 `
 
-export const HeroTitle = styled.div`
+const HeroTitle = styled.div`
   text-align: center;
   position: absolute;
   top: 50%;
@@ -108,7 +108,7 @@ export const HeroTitle = styled.div`
   color: rgb(221, 208, 193);
   letter-spacing: 1px;
   font-family: 'MedievalSharp', cursive;
-  text-shadow: 0 1px 0 black;
+  text-shadow: 0 1px 0 #393939;
   h1 {
     font-size: 60px;
     margin: 0;
@@ -161,7 +161,7 @@ const Form = styled.form`
     background-color: rgb(221, 208, 193);
     cursor: pointer;
     :hover {
-      box-shadow: 1px 1px 20px black;
+      box-shadow: 1px 1px 20px #393939;
     }
   }
   a {
