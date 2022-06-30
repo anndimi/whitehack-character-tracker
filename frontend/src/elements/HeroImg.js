@@ -1,18 +1,21 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import homeGif from '../assets/gifs/home.gif'
-import campaignGif from '../assets/gifs/campaign.gif'
-import graveGif from '../assets/gifs/graveyard.gif'
-import herosGif from '../assets/gifs/characters.gif'
 import { Link } from 'react-router-dom'
+import campaignBg from '../assets/images/campaignbg.jpg'
+import herosBg from '../assets/images/herosbg.jpg'
+import homeBg from '../assets/images/homebg.jpg'
+import graveyardBg from '../assets/images/graveyardbg.jpg'
 
 const HeroImg = () => {
   let location = useLocation()
 
   if (location.pathname === '/') {
     return (
-      <HeroImgContainer imgObj={homeGif}>
+      <HeroImgContainer
+        imgObj={homeBg}
+        style={{ backgroundPosition: 'top center' }}
+      >
         <HeroTitle>
           <h1>Whitehack Character Tracker</h1>
           <HomePageContainer>
@@ -50,7 +53,10 @@ const HeroImg = () => {
     )
   } else if (location.pathname === '/campaign') {
     return (
-      <HeroImgContainer imgObj={campaignGif} style={{ height: '45%' }}>
+      <HeroImgContainer
+        imgObj={campaignBg}
+        style={{ height: '45%', backgroundPosition: 'center' }}
+      >
         <HeroTitle>
           <h1>The Story</h1>
         </HeroTitle>
@@ -58,7 +64,10 @@ const HeroImg = () => {
     )
   } else if (location.pathname === '/campaign/characters') {
     return (
-      <HeroImgContainer imgObj={herosGif} style={{ height: '45%' }}>
+      <HeroImgContainer
+        imgObj={herosBg}
+        style={{ height: '45%', backgroundPosition: 'top center' }}
+      >
         <HeroTitle>
           <h1>The Fellowship of Heroes</h1>
         </HeroTitle>
@@ -66,9 +75,13 @@ const HeroImg = () => {
     )
   } else if (location.pathname === '/campaign/graveyard') {
     return (
-      <HeroImgContainer imgObj={graveGif} style={{ height: '45%' }}>
+      <HeroImgContainer
+        imgObj={graveyardBg}
+        style={{ height: '45%', backgroundPosition: 'top center' }}
+      >
         <HeroTitle>
-          <h1>The deceased... May they rest in peace..</h1>
+          <h1>The deceased...</h1>
+          <h3>May they rest in peace..</h3>
         </HeroTitle>
       </HeroImgContainer>
     )
@@ -84,7 +97,6 @@ const HeroImgContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  background-position: center;
 `
 
 export const HeroTitle = styled.div`

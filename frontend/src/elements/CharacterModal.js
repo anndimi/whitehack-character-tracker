@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import modalBg from '../assets/images/modal.jpg'
 
 const CharacterModal = ({ onClose, showModal }) => {
   const handleFormSubmit = (e) => {
@@ -19,12 +20,43 @@ const CharacterModal = ({ onClose, showModal }) => {
           <h3>Add new hero</h3>
         </ModalHeader>
         <ModalBody>
-          <form onSubmit={handleFormSubmit}>
-            <input type="text"></input>
+          <Form onSubmit={handleFormSubmit}>
             <div>
-              <button type="submit">Add hero</button>
+              <label htmlFor="name">Name: </label>
+              <input type="text" name="name" placeholder="heroic name"></input>
             </div>
-          </form>
+
+            <div>
+              <label htmlFor="species">Species: </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="heroic species"
+              ></input>
+            </div>
+
+            <div>
+              <label htmlFor="class">Class: </label>
+              <input
+                type="text"
+                name="class"
+                placeholder="heroic class"
+              ></input>
+            </div>
+
+            <div>
+              <label htmlFor="Vocation">Vocation: </label>
+              <input
+                type="text"
+                name="vocation"
+                placeholder="heroic vocation"
+              ></input>
+            </div>
+
+            <ModalButtonWrapper>
+              <button type="submit">Add hero</button>
+            </ModalButtonWrapper>
+          </Form>
         </ModalBody>
       </ModalWrapper>
     </ModalContainer>
@@ -42,24 +74,47 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: #05030399;
 `
 
 const ModalWrapper = styled.div`
   width: 500px;
   height: fit-content;
-  background-color: #ffffff;
+  background-image: url(${modalBg});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  background-position: center;
 `
 
 const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 3px 10px 0px 10px;
+  text-align: center;
 `
 
 const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   padding: 5px 15px 0 15px;
+`
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  gap: 10px;
+  font-size: 15px;
+  input {
+    border: 1px solid transparent;
+    border-bottom: 1px dotted black;
+    background-color: transparent;
+  }
+`
+
+const ModalButtonWrapper = styled.div`
+  text-align: center;
+  width: 100%;
+  align-self: center;
+  padding: 20px 15px 20px 15px;
+  margin-top: 10px;
 `
