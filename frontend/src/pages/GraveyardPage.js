@@ -19,7 +19,7 @@ const GraveyardPage = () => {
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone2} />
-            <h3>Eluwaer</h3>
+            <h3>Noob</h3>
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone3} />
@@ -31,6 +31,10 @@ const GraveyardPage = () => {
           </GravestoneContainer>
           <GravestoneContainer>
             <img src={gravestone5} />
+            <h3>Bromir</h3>
+          </GravestoneContainer>
+          <GravestoneContainer>
+            <img src={gravestone2} />
             <h3>Doge Tinyshoe</h3>
           </GravestoneContainer>
         </GraveyardContainer>
