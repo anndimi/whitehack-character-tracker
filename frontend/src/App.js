@@ -26,7 +26,6 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="campaign" element={<CampaignPage />}>
-            <Route index element={<CharactersPage />} />
             <Route
               path="characters"
               element={<CharactersPage characters={characters} />}
