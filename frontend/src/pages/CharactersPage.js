@@ -12,7 +12,7 @@ import { Divider } from '../styles/global'
 
 const CharactersPage = ({ characters }) => {
   const [showModal, setShowModal] = useState(false)
-  console.log(showModal)
+
   return (
     <PageContainer>
       <PageWrapper>
@@ -27,16 +27,29 @@ const CharactersPage = ({ characters }) => {
         <CharactersWrapper>
           <Divider src={divider} alt="divider" />
           <SingleCharacterContainer>
-            <img src={deftIcon} /> Idris Kushul
+            <div>
+              <img src={deftIcon} />
+              Idris Kushul
+            </div>
+            <span>Level 1</span>
           </SingleCharacterContainer>
           <SingleCharacterContainer>
-            <img src={wiseIcon} /> Nicholas Black Elk
+            <div>
+              <img src={wiseIcon} /> Nicholas Black Elk
+            </div>
+            <span>Level 1</span>
           </SingleCharacterContainer>
           <SingleCharacterContainer>
-            <img src={wiseIcon} /> Baksha Greenleaf
+            <div>
+              <img src={wiseIcon} /> Baksha Greenleaf
+            </div>
+            <span>Level 1</span>
           </SingleCharacterContainer>
           <SingleCharacterContainer>
-            <img src={strongIcon} /> Bromir
+            <div>
+              <img src={strongIcon} /> Bromir
+            </div>
+            <span>Level 4</span>
           </SingleCharacterContainer>
           {/* {characters.map((character) => (
             <CharacterListContainer key={character._id}>
@@ -114,17 +127,23 @@ const CharactersWrapper = styled.div`
 `
 
 const SingleCharacterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   cursor: pointer;
   width: 80%;
   padding: 5px 0;
   border-top: 3px double transparent;
   border-bottom: 3px double transparent;
   img {
-    width: 40px;
+    width: 100%;
+    max-width: 40px;
     vertical-align: middle;
   }
   :hover {
     border-top: 3px double #393939;
     border-bottom: 3px double #393939;
+  }
+  span {
+    line-height: 40px;
   }
 `

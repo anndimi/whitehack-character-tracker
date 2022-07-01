@@ -76,6 +76,7 @@ const ModalWrapper = styled.div`
   width: 500px;
   height: fit-content;
   background-color: rgb(221, 208, 193);
+  border-radius: 2px;
   z-index: 9999;
 `
 
