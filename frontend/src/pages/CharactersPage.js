@@ -24,20 +24,16 @@ const CharactersPage = ({ characters }) => {
         />
         <CharactersWrapper>
           <span>
-            <img src={deftIcon} />
-            Idris Kushul
+            <img src={deftIcon} /> Idris Kushul
           </span>
           <span>
-            <img src={wiseIcon} />
-            Nicholas Black Elk
+            <img src={wiseIcon} /> Nicholas Black Elk
           </span>
           <span>
-            <img src={wiseIcon} />
-            Baksha Greenleaf
+            <img src={wiseIcon} /> Baksha Greenleaf
           </span>
           <span>
-            <img src={strongIcon} />
-            Bromir
+            <img src={strongIcon} /> Bromir
           </span>
           {/* {characters.map((character) => (
             <CharacterListContainer key={character._id}>
@@ -102,14 +98,16 @@ const PageWrapper = styled.div`
 const CharactersWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  gap: 25px;
   border-bottom: 4px double #393939;
   border-top: 4px double #393939;
   padding: 30px 0;
   margin-top: 20px;
   img {
-    width: 30px;
-    vertical-align: bottom;
+    width: 40px;
+    vertical-align: middle;
+  }
+  span {
+    font-size: 18px;
   }
 `
