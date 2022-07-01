@@ -26,18 +26,18 @@ const CharactersPage = ({ characters }) => {
         />
         <CharactersWrapper>
           <Divider src={divider} alt="divider" />
-          <span>
+          <SingleCharacterContainer>
             <img src={deftIcon} /> Idris Kushul
-          </span>
-          <span>
+          </SingleCharacterContainer>
+          <SingleCharacterContainer>
             <img src={wiseIcon} /> Nicholas Black Elk
-          </span>
-          <span>
+          </SingleCharacterContainer>
+          <SingleCharacterContainer>
             <img src={wiseIcon} /> Baksha Greenleaf
-          </span>
-          <span>
+          </SingleCharacterContainer>
+          <SingleCharacterContainer>
             <img src={strongIcon} /> Bromir
-          </span>
+          </SingleCharacterContainer>
           {/* {characters.map((character) => (
             <CharacterListContainer key={character._id}>
               <Link
@@ -107,13 +107,24 @@ const AddHeroButtonImg = styled.img`
 const CharactersWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  align-items: center;
+  gap: 15px;
   margin-top: 20px;
+  font-size: 18px;
+`
+
+const SingleCharacterContainer = styled.div`
+  cursor: pointer;
+  width: 80%;
+  padding: 5px 0;
+  border-top: 3px double transparent;
+  border-bottom: 3px double transparent;
   img {
     width: 40px;
     vertical-align: middle;
   }
-  span {
-    font-size: 18px;
+  :hover {
+    border-top: 3px double #393939;
+    border-bottom: 3px double #393939;
   }
 `
