@@ -69,12 +69,14 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: #05030399;
+  z-index: 9999;
 `
 
 const ModalWrapper = styled.div`
   width: 500px;
   height: fit-content;
   background-color: rgb(221, 208, 193);
+  z-index: 9999;
 `
 
 const ModalHeader = styled.div`
@@ -96,6 +98,9 @@ const CloseButton = styled.button`
       vertical-align: middle;
       :hover {
         transform: scale(1.09);
+      }
+      :active {
+        transform: scale(1);
       }
     }
   }
@@ -141,6 +146,9 @@ const ModalButtonWrapper = styled.div`
   img {
     :hover {
       transform: scale(1.09);
+    }
+    :active {
+      transform: scale(1);
     }
   }
 `

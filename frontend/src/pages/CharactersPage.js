@@ -7,6 +7,8 @@ import crossIcon from '../assets/icons/cross-icon.png'
 import wiseIcon from '../assets/icons/wise-icon.png'
 import strongIcon from '../assets/icons/strong-icon.png'
 import deftIcon from '../assets/icons/deft-icon.png'
+import divider from '../assets/images/divider.png'
+import { Divider } from '../styles/global'
 
 const CharactersPage = ({ characters }) => {
   const [showModal, setShowModal] = useState(false)
@@ -16,13 +18,14 @@ const CharactersPage = ({ characters }) => {
       <PageWrapper>
         <h1>Current fellowship</h1>
         <button type="submit" onClick={() => setShowModal(true)}>
-          <img src={crossIcon} alt="add hero" />
+          <AddHeroButtonImg src={crossIcon} alt="add hero" />
         </button>
         <CharacterModal
           onClose={() => setShowModal(false)}
           showModal={showModal}
         />
         <CharactersWrapper>
+          <Divider src={divider} alt="divider" />
           <span>
             <img src={deftIcon} /> Idris Kushul
           </span>
@@ -45,6 +48,7 @@ const CharactersPage = ({ characters }) => {
               </Link>
             </CharacterListContainer>
           ))} */}
+          <Divider src={divider} alt="divider" />
         </CharactersWrapper>
       </PageWrapper>
     </PageContainer>
@@ -88,10 +92,14 @@ const PageWrapper = styled.div`
     background-color: rgb(221, 208, 193);
     cursor: pointer;
   }
-  img {
-    :hover {
-      transform: scale(1.09);
-    }
+`
+
+const AddHeroButtonImg = styled.img`
+  :hover {
+    transform: scale(1.09);
+  }
+  :active {
+    transform: scale(1);
   }
 `
 
@@ -99,9 +107,6 @@ const CharactersWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
-  border-bottom: 4px double #393939;
-  border-top: 4px double #393939;
-  padding: 30px 0;
   margin-top: 20px;
   img {
     width: 40px;

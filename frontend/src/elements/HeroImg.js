@@ -19,7 +19,7 @@ const HeroImg = () => {
         <HeroTitle>
           <h1>Whitehack Character Tracker</h1>
           <HomePageContainer>
-            <h2>Go to an existing campaign or create a new one!</h2>
+            <h2>Go to an existing campaign or create a new one</h2>
             <FormsContainer>
               <Form>
                 <label htmlFor="existingCampaign"></label>

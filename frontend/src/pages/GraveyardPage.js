@@ -6,12 +6,15 @@ import gravestone2 from '../assets/images/gravestone2.png'
 import gravestone3 from '../assets/images/gravestone3.png'
 import gravestone4 from '../assets/images/gravestone4.png'
 import gravestone5 from '../assets/images/gravestone5.png'
+import divider from '../assets/images/divider.png'
+import { Divider } from '../styles/global'
 
 const GraveyardPage = () => {
   return (
     <PageContainer>
       <PageWrapper>
         <h1>Requiescat in pace, heroum..</h1>
+        <Divider src={divider} alt="divider" />
         <GraveyardContainer>
           <GravestoneContainer>
             <img src={gravestone1} />
@@ -38,6 +41,7 @@ const GraveyardPage = () => {
             <h3>Doge Tinyshoe</h3>
           </GravestoneContainer>
         </GraveyardContainer>
+        <Divider src={divider} alt="divider" />
       </PageWrapper>
     </PageContainer>
   )
@@ -68,8 +72,6 @@ const GraveyardContainer = styled.div`
   gap: 20px;
   margin: auto;
   text-align: center;
-  border-bottom: 4px double #393939;
-  border-top: 4px double #393939;
   padding: 30px 0;
   img {
     width: 250px;

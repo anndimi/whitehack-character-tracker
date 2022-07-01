@@ -2,6 +2,8 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import Navbar from '../elements/Navbar'
 import styled from 'styled-components'
+import divider from '../assets/images/divider.png'
+import { Divider } from '../styles/global'
 
 const CampaignPage = () => {
   let location = useLocation()
@@ -10,8 +12,9 @@ const CampaignPage = () => {
       <Navbar />
       {location.pathname === '/campaign' ? (
         <PageContainer>
-          <h1>(Campaign name)</h1>
+          <h1>Adventures Under a Dying Sun</h1>
           <CampaignWrapper>
+            <Divider src={divider} alt="divider" />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
@@ -27,6 +30,7 @@ const CampaignPage = () => {
               pellentesque massa placerat duis ultricies lacus. Eget egestas
               purus viverra accumsan in nisl nisi scelerisque.
             </p>
+            <Divider src={divider} alt="divider" />
           </CampaignWrapper>
         </PageContainer>
       ) : null}
@@ -46,8 +50,9 @@ const PageContainer = styled.div`
   max-width: 1000px;
 `
 const CampaignWrapper = styled.div`
-  border-bottom: 4px double #393939;
-  border-top: 4px double #393939;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 30px 0;
   p {
     font-size: 20px;
