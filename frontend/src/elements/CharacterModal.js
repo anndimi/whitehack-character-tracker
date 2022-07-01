@@ -19,9 +19,9 @@ const CharacterModal = ({ onClose, showModal }) => {
       <ModalWrapper onClick={(event) => event.stopPropagation()}>
         <ModalHeader>
           <h3>Add new hero</h3>
-          <button onClick={onClose}>
+          <CloseButton onClick={onClose}>
             <img src={closeIcon} alt="Close" />
-          </button>
+          </CloseButton>
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={handleFormSubmit}>
@@ -81,9 +81,16 @@ const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  button {
-    width: 50px;
-    margin: 0;
+  h3 {
+    font-size: 24px;
+    font-family: 'MedievalSharp', cursive;
+    padding-left: 40px;
+  }
+`
+
+const CloseButton = styled.button`
+    width: 50px !important;
+    margin: 0 !important;
     img {
       width: 30px;
       vertical-align: middle;
@@ -91,11 +98,6 @@ const ModalHeader = styled.div`
         transform: scale(1.09);
       }
     }
-  }
-  h3 {
-    font-size: 24px;
-    font-family: 'MedievalSharp', cursive;
-    padding-left: 40px;
   }
 `
 

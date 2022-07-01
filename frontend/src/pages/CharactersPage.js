@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
 import CharacterModal from '../elements/CharacterModal'
 import crossIcon from '../assets/icons/cross-icon.png'
+import wiseIcon from '../assets/icons/wise-icon.png'
+import strongIcon from '../assets/icons/strong-icon.png'
+import deftIcon from '../assets/icons/deft-icon.png'
 
 const CharactersPage = ({ characters }) => {
   const [showModal, setShowModal] = useState(false)
@@ -20,12 +23,22 @@ const CharactersPage = ({ characters }) => {
           showModal={showModal}
         />
         <CharactersWrapper>
-          <span>Sappho</span>
-          <span>Sappho</span>
-          <span>Sappho</span>
-          <span>Sappho</span>
-          <span>Sappho</span>
-          <span>Sappho</span>
+          <span>
+            <img src={deftIcon} />
+            Idris Kushul
+          </span>
+          <span>
+            <img src={wiseIcon} />
+            Nicholas Black Elk
+          </span>
+          <span>
+            <img src={wiseIcon} />
+            Baksha Greenleaf
+          </span>
+          <span>
+            <img src={strongIcon} />
+            Bromir
+          </span>
           {/* {characters.map((character) => (
             <CharacterListContainer key={character._id}>
               <Link
@@ -89,9 +102,14 @@ const PageWrapper = styled.div`
 const CharactersWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
   border-bottom: 4px double #393939;
   border-top: 4px double #393939;
   padding: 30px 0;
   margin-top: 20px;
+  img {
+    width: 30px;
+    vertical-align: bottom;
+  }
 `
