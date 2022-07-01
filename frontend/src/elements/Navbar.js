@@ -59,7 +59,7 @@ const NavbarWrapper = styled.nav`
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
   max-width: 1000px;
   padding: 40px 0;
   z-index: 9999;
@@ -68,7 +68,7 @@ const NavbarWrapper = styled.nav`
     text-decoration: none;
     font-size: 24px;
     letter-spacing: 1px;
-    padding: 0 15px;
+    padding: 0 10px;
     :hover {
       text-decoration: line-through;
     }

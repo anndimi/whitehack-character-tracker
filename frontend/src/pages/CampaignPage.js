@@ -51,6 +51,7 @@ const PageContainer = styled.div`
   h1 {
     margin-top: 30px;
     margin-bottom: 0;
+    text-align: center;
   }
 `
 const CampaignWrapper = styled.div`

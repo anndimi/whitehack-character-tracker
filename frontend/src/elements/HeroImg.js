@@ -14,7 +14,7 @@ const HeroImg = () => {
     return (
       <HeroImgContainer
         imgObj={homeBg}
-        style={{ backgroundPosition: 'top center' }}
+        style={{ height: '100%', backgroundPosition: 'top center' }}
       >
         <HeroTitle>
           <h1>Whitehack Character Tracker</h1>
@@ -55,7 +55,7 @@ const HeroImg = () => {
     return (
       <HeroImgContainer
         imgObj={campaignBg}
-        style={{ height: '45%', backgroundPosition: 'center' }}
+        style={{ backgroundPosition: 'center' }}
       >
         <HeroTitle>
           <h1>The Story</h1>
@@ -66,7 +66,7 @@ const HeroImg = () => {
     return (
       <HeroImgContainer
         imgObj={herosBg}
-        style={{ height: '45%', backgroundPosition: 'top center' }}
+        style={{ backgroundPosition: 'top center' }}
       >
         <HeroTitle>
           <h1>The Heroes</h1>
@@ -77,7 +77,7 @@ const HeroImg = () => {
     return (
       <HeroImgContainer
         imgObj={graveyardBg}
-        style={{ height: '45%', backgroundPosition: 'top center' }}
+        style={{ backgroundPosition: 'top center' }}
       >
         <HeroTitle>
           <h1>The Deceased</h1>
@@ -92,10 +92,14 @@ export default HeroImg
 const HeroImgContainer = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('${(props) => props.imgObj}');
-  height: 100%;
+  height: 45%;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+
+  @media (max-width: 500px) {
+    height: 50%;
+  }
 `
 
 const HeroTitle = styled.div`
