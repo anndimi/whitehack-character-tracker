@@ -14,6 +14,7 @@ const GraveyardPage = () => {
     <PageContainer>
       <PageWrapper>
         <h1>Requiescat in pace, heroum..</h1>
+        <h3>Tua facta memorabuntur</h3>
         <Divider src={divider} alt="divider" />
         <GraveyardContainer>
           <GravestoneContainer>

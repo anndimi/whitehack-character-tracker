@@ -16,7 +16,7 @@ const CharactersPage = ({ characters }) => {
   return (
     <PageContainer>
       <PageWrapper>
-        <h1>Current fellowship</h1>
+        <h1>Summon new hero</h1>
         <button type="submit" onClick={() => setShowModal(true)}>
           <AddHeroButtonImg src={crossIcon} alt="add hero" />
         </button>
@@ -78,6 +78,7 @@ const PageWrapper = styled.div`
   max-width: 1000px;
   h1 {
     text-align: center;
+    margin-bottom: 0;
   }
   p {
     font-size: 20px;

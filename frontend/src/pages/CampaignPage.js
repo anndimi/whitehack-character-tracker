@@ -48,6 +48,10 @@ const PageContainer = styled.div`
   margin: auto;
   width: 80%;
   max-width: 1000px;
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
 `
 const CampaignWrapper = styled.div`
   display: flex;
