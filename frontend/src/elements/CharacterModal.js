@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import modalBg from '../assets/images/modal.jpg'
+import crossIcon from '../assets/icons/cross-icon.png'
+import closeIcon from '../assets/icons/close-icon.png'
 
 const CharacterModal = ({ onClose, showModal }) => {
   const handleFormSubmit = (e) => {
@@ -18,43 +19,36 @@ const CharacterModal = ({ onClose, showModal }) => {
       <ModalWrapper onClick={(event) => event.stopPropagation()}>
         <ModalHeader>
           <h3>Add new hero</h3>
+          <button onClick={onClose}>
+            <img src={closeIcon} alt="Close" />
+          </button>
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={handleFormSubmit}>
             <div>
-              <label htmlFor="name">Name: </label>
-              <input type="text" name="name" placeholder="heroic name"></input>
+              <label htmlFor="name">Name </label>
+              <input type="text" name="name"></input>
             </div>
 
             <div>
-              <label htmlFor="species">Species: </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="heroic species"
-              ></input>
+              <label htmlFor="species">Species </label>
+              <input type="text" name="name"></input>
             </div>
 
             <div>
-              <label htmlFor="class">Class: </label>
-              <input
-                type="text"
-                name="class"
-                placeholder="heroic class"
-              ></input>
+              <label htmlFor="class">Class </label>
+              <input type="text" name="class"></input>
             </div>
 
             <div>
-              <label htmlFor="Vocation">Vocation: </label>
-              <input
-                type="text"
-                name="vocation"
-                placeholder="heroic vocation"
-              ></input>
+              <label htmlFor="Vocation">Vocation </label>
+              <input type="text" name="vocation"></input>
             </div>
 
             <ModalButtonWrapper>
-              <button type="submit">Add hero</button>
+              <button type="submit">
+                <img src={crossIcon} alt="add hero" />
+              </button>
             </ModalButtonWrapper>
           </Form>
         </ModalBody>
@@ -84,9 +78,24 @@ const ModalWrapper = styled.div`
 `
 
 const ModalHeader = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  button {
+    width: 50px;
+    margin: 0;
+    img {
+      width: 30px;
+      vertical-align: middle;
+      :hover {
+        transform: scale(1.09);
+      }
+    }
+  }
   h3 {
+    font-size: 24px;
     font-family: 'MedievalSharp', cursive;
+    padding-left: 40px;
   }
 `
 
@@ -101,12 +110,23 @@ const Form = styled.form`
   flex-direction: column;
   width: 80%;
   margin: auto;
-  gap: 10px;
-  font-size: 15px;
+  gap: 12px;
+  font-size: 18px;
   input {
+    width: 100%;
+    height: 28px;
+    font-size: 20px;
     border: 1px solid transparent;
     border-bottom: 1px dotted black;
     background-color: transparent;
+    font-family: inherit;
+    color: #393939;
+    :focus {
+      border: 1px solid transparent;
+      outline-offset: 0px !important;
+      outline: none !important;
+      border-bottom: 1px dotted black;
+    }
   }
 `
 
@@ -116,4 +136,9 @@ const ModalButtonWrapper = styled.div`
   align-self: center;
   padding: 20px 15px 20px 15px;
   margin-top: 10px;
+  img {
+    :hover {
+      transform: scale(1.09);
+    }
+  }
 `

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
 import CharacterModal from '../elements/CharacterModal'
+import crossIcon from '../assets/icons/cross-icon.png'
 
 const CharactersPage = ({ characters }) => {
   const [showModal, setShowModal] = useState(false)
@@ -12,7 +13,7 @@ const CharactersPage = ({ characters }) => {
       <PageWrapper>
         <h1>Current fellowship</h1>
         <button type="submit" onClick={() => setShowModal(true)}>
-          Add hero
+          <img src={crossIcon} alt="add hero" />
         </button>
         <CharacterModal
           onClose={() => setShowModal(false)}
@@ -74,11 +75,13 @@ const PageWrapper = styled.div`
     margin: auto;
     font-family: inherit;
     font-size: 20px;
-    border: 1px solid #393939;
+    border: 1px solid transparent;
     background-color: rgb(221, 208, 193);
     cursor: pointer;
+  }
+  img {
     :hover {
-      box-shadow: 1px 1px 10px #393939;
+      transform: scale(1.09);
     }
   }
 `
