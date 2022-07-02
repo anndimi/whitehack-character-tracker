@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 import campaignBg from '../assets/images/campaignbg.jpg'
 import herosBg from '../assets/images/herosbg.jpg'
@@ -106,11 +106,27 @@ const HeroImgContainer = styled.div`
   }
 `
 
+const rotate = keyframes`
+ from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`
+
 const LogoContainer = styled.div`
   padding: 10px;
   img {
     width: 100%;
     max-width: 150px;
+    :hover {
+      animation-name: ${rotate};
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
   }
 `
 
