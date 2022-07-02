@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Navbar from '../elements/Navbar'
 import styled from 'styled-components'
@@ -6,8 +6,10 @@ import divider from '../assets/images/divider.png'
 import { Divider } from '../styles/global'
 import quilIcon from '../assets/icons/quil-icon.png'
 import sealImg from '../assets/images/seal-img.png'
+import StoryEntryModal from '../elements/StoryEntryModal'
 
 const CampaignPage = () => {
+  const [showModal, setShowModal] = useState(false)
   let location = useLocation()
   return (
     <>
@@ -15,10 +17,14 @@ const CampaignPage = () => {
       {location.pathname === '/campaign' ? (
         <PageContainer>
           <h1>Adventures Under a Dying Sun</h1>
-          <AddEntryButton>
+          <AddEntryButton onClick={() => setShowModal(true)}>
             <img src={quilIcon} />
           </AddEntryButton>
           New Entry
+          <StoryEntryModal
+            onClose={() => setShowModal(false)}
+            showModal={showModal}
+          />
           <CampaignWrapper>
             <Divider src={divider} alt="divider" />
             <h4>Saturday, 02/07</h4>
