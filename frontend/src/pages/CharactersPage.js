@@ -91,7 +91,6 @@ const PageWrapper = styled.div`
   max-width: 1000px;
   h1 {
     text-align: center;
-    margin-bottom: 0;
   }
   p {
     font-size: 20px;
@@ -100,8 +99,7 @@ const PageWrapper = styled.div`
     width: 70%;
     max-width: 180px;
     margin: auto;
-    font-family: inherit;
-    font-size: 20px;
+    margin-top: 15px;
     border: 1px solid transparent;
     background-color: rgb(221, 208, 193);
     cursor: pointer;
