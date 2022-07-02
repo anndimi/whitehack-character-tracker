@@ -8,6 +8,7 @@ import GraveyardPage from './pages/GraveyardPage'
 import ErrorPage from './pages/ErrorPage'
 import styled from 'styled-components'
 import HeroImg from './elements/HeroImg'
+import ScrollToTopButton from './elements/ScrollToTopBtn'
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -38,6 +39,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
+      <ScrollToTopButton />
     </AppContainer>
   )
 }
