@@ -6,6 +6,7 @@ import campaignBg from '../assets/images/campaignbg.jpg'
 import herosBg from '../assets/images/herosbg.jpg'
 import homeBg from '../assets/images/homebg.jpg'
 import graveyardBg from '../assets/images/graveyardbg.jpg'
+import logo from '../assets/images/logo.png'
 
 const HeroImg = () => {
   let location = useLocation()
@@ -16,6 +17,9 @@ const HeroImg = () => {
         imgObj={homeBg}
         style={{ height: '100%', backgroundPosition: 'top center' }}
       >
+        <LogoContainer>
+          <img src={logo} alt="Whitehack Character Tracker" />
+        </LogoContainer>
         <HeroTitle>
           <h1>Whitehack Character Tracker</h1>
           <HomePageContainer>
@@ -99,6 +103,14 @@ const HeroImgContainer = styled.div`
 
   @media (max-width: 500px) {
     height: 50%;
+  }
+`
+
+const LogoContainer = styled.div`
+  padding: 10px;
+  img {
+    width: 100%;
+    max-width: 150px;
   }
 `
 

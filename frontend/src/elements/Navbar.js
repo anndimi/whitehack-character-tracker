@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import logo from '../assets/images/logo.png'
 
 const Navbar = () => {
   let location = useLocation()
@@ -8,7 +9,11 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <NavbarWrapper>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <LogoContainer>
+            <img src={logo} />
+          </LogoContainer>
+        </Link>
         <Link
           to="/campaign"
           style={
@@ -57,11 +62,12 @@ const NavbarContainer = styled.div`
 const NavbarWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   margin: 0 auto;
   width: 70%;
   max-width: 1000px;
-  padding: 40px 0;
+  padding: 20px 0;
   z-index: 9999;
   a {
     color: rgb(221, 208, 193);
@@ -71,6 +77,28 @@ const NavbarWrapper = styled.nav`
     padding: 0 10px;
     :hover {
       text-decoration: line-through;
+    }
+  }
+`
+const rotate = keyframes`
+ from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const LogoContainer = styled.div`
+  img {
+    width: 100%;
+    max-width: 110px;
+    :hover {
+      animation-name: ${rotate};
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
     }
   }
 `
