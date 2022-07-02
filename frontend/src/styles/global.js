@@ -6,7 +6,7 @@ export const PageTitle = styled.h1`
 `
 
 export const PageContainer = styled.div`
-  margin-top: 37vh;
+  margin-top: 30vh;
 `
 
 export const Divider = styled.img`
