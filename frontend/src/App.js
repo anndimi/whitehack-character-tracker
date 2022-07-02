@@ -34,9 +34,7 @@ function App() {
             </Route>
 
             <Route path="graveyard" element={<GraveyardPage />} />
-            <Route path="*" element={<ErrorPage />} />
           </Route>
-
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
