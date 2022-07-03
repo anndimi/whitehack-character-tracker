@@ -46,7 +46,7 @@ const Button = styled.div`
   height: 20px;
   cursor: pointer;
   img {
-    wisth: 100%;
+    width: 100%;
     max-width: 60px;
     opacity: 0.55;
     :hover {

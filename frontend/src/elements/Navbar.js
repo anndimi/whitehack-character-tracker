@@ -96,7 +96,7 @@ const LogoContainer = styled.div`
     max-width: 110px;
     :hover {
       animation-name: ${rotate};
-      animation-duration: 20s;
+      animation-duration: 35s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }

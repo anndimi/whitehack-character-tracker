@@ -131,7 +131,7 @@ const AddEntryButton = styled.button`
       transform: scale(1.09);
     }
     :active {
-      tranform: scale(1);
+      transform: scale(1);
     }
   }
 `

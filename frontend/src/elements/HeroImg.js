@@ -23,28 +23,26 @@ const HeroImg = () => {
         <HeroTitle>
           <h1>Whitehack Character Tracker</h1>
           <HomePageContainer>
-            <h2>Go to an existing campaign or create a new one</h2>
             <FormsContainer>
+              <h2>Go to existing campaign</h2>
               <Form>
                 <label htmlFor="existingCampaign"></label>
                 <input
                   type="text"
                   id="existingCampaign"
                   name="existingCampaign "
-                  placeholder="Your campaign"
                 ></input>
                 <button>
                   <Link to="/campaign">Go to campaign</Link>
                 </button>
               </Form>
-
+              <h2>Create new campaign</h2>
               <Form>
                 <label htmlFor="createCampaign"></label>
                 <input
                   type="text"
                   id="createCampaign"
                   name="createCampaign "
-                  placeholder="New campaign"
                 ></input>
                 <button>
                   <Link to="/campaign">Create campaign</Link>
@@ -117,16 +115,14 @@ const rotate = keyframes`
 `
 
 const LogoContainer = styled.div`
-  padding: 10px;
+  padding: 20px;
   img {
     width: 100%;
-    max-width: 150px;
-    :hover {
-      animation-name: ${rotate};
-      animation-duration: 20s;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear;
-    }
+    max-width: 170px;
+    animation-name: ${rotate};
+    animation-duration: 35s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 `
 
@@ -145,7 +141,9 @@ const HeroTitle = styled.div`
     margin: 0;
   }
   h2 {
-    font-size: 40px;
+    font-size: 35px;
+    margin-bottom: 0;
+    font-weight: normal;
   }
   h3 {
     font-size: 25px;
@@ -171,7 +169,6 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
   width: 100%;
   max-width: 800px;
   font-family: 'IM Fell English', serif;
@@ -181,21 +178,27 @@ const Form = styled.form`
     height: 30px;
     font-family: inherit;
     font-size: 20px;
-    background-color: rgb(221, 208, 193, 0.8);
+    background-color: rgb(221, 208, 193, 0.6);
     border: 1px solid transparent;
+    border-radius: 2px;
     :focus {
-      border-radius: none;
+      border: 1px solid transparent;
+      outline-offset: 0px !important;
+      outline: none !important;
+      border-radius: 2px;
     }
   }
   button {
+    margin-top: 10px;
     width: 70%;
     max-width: 180px;
     font-family: inherit;
     border: 1px solid transparent;
     background-color: rgb(221, 208, 193);
+    border-radius: 2px;
     cursor: pointer;
     :hover {
-      box-shadow: 1px 1px 20px #393939;
+      box-shadow: 1px 1px 20px rgb(221, 208, 193);
     }
   }
   a {
