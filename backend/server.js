@@ -10,15 +10,44 @@ app.use(cors())
 
 // Import functions
 const {
+  getCampaign,
+  createCampaign,
+  updateCampaign,
+  deleteCampaign,
+} = require('./functions/campaigns')
+
+const {
   getCharacter,
-  getCharacters,
+  getCharactersByCampaign,
   createCharacter,
   updateCharacter,
   deleteCharacter,
 } = require('./functions/characters')
 
-app.get('/characters', async (req, res) => {
-  await getCharacters().then(
+const {
+  getJournalsByCharacter,
+  getJournalsByCampaign,
+  createJournal,
+  updateJournal,
+  deleteJournal,
+} = require('./functions/journals')
+
+/*
+ * ROUTES: CHARACTERS
+ */
+app.get('/characters/:id', async (req, res) => {
+  await getCharacter(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.get('/characters/:id/journals', async (req, res) => {
+  await getJournalsByCharacter(req.params.id).then(
     (result) => {
       res.send(result)
     },
@@ -30,17 +59,6 @@ app.get('/characters', async (req, res) => {
 
 app.post('/characters', async (req, res) => {
   await createCharacter(req.body).then(
-    (result) => {
-      res.send(result)
-    },
-    (reason) => {
-      res.sendStatus(500)
-    }
-  )
-})
-
-app.get('/characters/:id', async (req, res) => {
-  await getCharacter(req.params.id).then(
     (result) => {
       res.send(result)
     },
@@ -63,6 +81,111 @@ app.patch('/characters/:id', async (req, res) => {
 
 app.delete('/characters/:id', async (req, res) => {
   await deleteCharacter(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+/*
+ * ROUTES: CAMPAIGNS
+ */
+app.post('/campaigns', async (req, res) => {
+  await createCampaign(req.body).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.get('/campaigns/:id', async (req, res) => {
+  await getCampaign(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.get('/campaigns/:id/characters', async (req, res) => {
+  await getCharactersByCampaign(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.get('/campaigns/:id/journals', async (req, res) => {
+  await getJournalsByCampaign(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.patch('/campaigns/:id', async (req, res) => {
+  await updateCampaign(req.params.id, req.body).then(
+    (result) => {
+      return res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.delete('/campaigns/:id', async (req, res) => {
+  await deleteCampaign(req.params.id).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+/*
+ * ROUTES: JOURNALS
+ */
+app.post('/journals', async (req, res) => {
+  await createJournal(req.body).then(
+    (result) => {
+      res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.patch('/journals/:id', async (req, res) => {
+  await updateJournal(req.params.id, req.body).then(
+    (result) => {
+      return res.send(result)
+    },
+    (reason) => {
+      res.sendStatus(500)
+    }
+  )
+})
+
+app.delete('/journals/:id', async (req, res) => {
+  await deleteJournal(req.params.id).then(
     (result) => {
       res.send(result)
     },

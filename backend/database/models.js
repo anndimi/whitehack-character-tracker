@@ -28,10 +28,10 @@ const arraysAreEqual = (arr1, arr2) => {
 }
 
 class Character extends Model {
-  getClassEntry() {
-    return Class.findOne({
+  getLevelEntry() {
+    return Level.findOne({
       where: {
-        name: this.name,
+        class: this.class,
         experiencePointsRequired: {
           [Op.lte]: this.experiencePoints,
         },
@@ -43,6 +43,12 @@ class Character extends Model {
 
 Character.init(
   {
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -73,7 +79,7 @@ Character.init(
     level: {
       type: DataTypes.INTEGER,
       get() {
-        return this.getClassEntry().getDataValue('level')
+        return this.getLevelEntry().getDataValue('level')
       },
     },
     attributes: {
@@ -137,12 +143,12 @@ Character.init(
   { sequelize }
 )
 
-const Class = sequelize.define('Class', {
-  name: {
+const Level = sequelize.define('Level', {
+  class: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isIn: [['Deft', 'Strong', 'Wise']],
+      isIn: [['Deft', 'Strong', 'Wise']], // TODO add support for Brave and Fortunate
     },
   },
   level: {
@@ -219,8 +225,49 @@ const Class = sequelize.define('Class', {
   },
 })
 
+const Campaign = sequelize.define('Campaign', {
+  id: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+})
+
+const Journal = sequelize.define('Journal', {
+  id: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  body: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+})
+
+Campaign.hasMany(Character)
+Character.belongsTo(Campaign)
+
+Character.hasMany(Journal)
+Journal.belongsTo(Character)
+
+Campaign.hasMany(Journal)
+Journal.belongsTo(Campaign)
+
 module.exports = {
   sequelize,
+  Campaign,
   Character,
-  Class,
+  Level,
+  Journal,
 }

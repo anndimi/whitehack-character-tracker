@@ -1,3 +1,7 @@
-const { dropAndSync } = require('./helpers')
+const { dropAndSync, populateLevels } = require('./helpers')
 
-dropAndSync()
+async function main() {
+  await dropAndSync().then(() => populateLevels())
+}
+
+main()

@@ -2,7 +2,6 @@
 const { sequelize, Character } = require('../database/models')
 
 const getCharacter = async function (id) {
-  // FIXME use uuid instead of id for obscurity
   return Character.findOne({
     where: {
       id: id,
@@ -10,12 +9,17 @@ const getCharacter = async function (id) {
   })
 }
 
-const getCharacters = async function () {
-  return Character.findAll()
+const getCharactersByCampaign = async function (campaignId) {
+  return Character.findAll({
+    where: {
+      campaignId: campaignId,
+    },
+  })
 }
 
-const createCharacter = async function (data) {
+const createCharacter = async function (campaignId, data) {
   return Character.create({
+    CampaignId: campaignId,
     name: data.name,
     class: data.class,
     species: data.species,
@@ -37,7 +41,7 @@ const deleteCharacter = async function (id) {
 
 module.exports = {
   getCharacter,
-  getCharacters,
+  getCharactersByCampaign,
   createCharacter,
   updateCharacter,
   deleteCharacter,
