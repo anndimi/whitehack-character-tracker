@@ -5,9 +5,7 @@ export const PageTitle = styled.h1`
   color: white;
 `
 
-export const PageContainer = styled.div`
-  margin-top: 30vh;
-`
+export const PageContainer = styled.div``
 
 export const Divider = styled.img`
   width: 90% !important;

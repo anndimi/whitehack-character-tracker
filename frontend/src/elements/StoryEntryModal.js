@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import crossIcon from '../assets/icons/cross-icon.png'
 import closeIcon from '../assets/icons/close-icon.png'
 
-const CharacterModal = ({ onClose, showModal }) => {
+const StoryEntryModal = ({ onClose, showModal }) => {
+  const [newJournalEntry, setNewJournalEntry] = useState({
+    body: '',
+    signature: '',
+  })
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        body: e.target[0].value,
+        signature: e.target[1].value,
+      }),
+    }
+
+    fetch('http://localhost:8080/journals', options)
+      .then((res) => res.json())
+      .then((data) => setNewJournalEntry(data))
 
     onClose()
   }
@@ -27,11 +47,11 @@ const CharacterModal = ({ onClose, showModal }) => {
           <Form onSubmit={handleFormSubmit}>
             <div>
               <label htmlFor="entry"> </label>
-              <textarea type="text" name="entry"></textarea>
+              <textarea type="text" name="entry" required></textarea>
             </div>
             <div>
               <label htmlFor="signature">Signed </label>
-              <input type="text" name="signature"></input>
+              <input type="text" name="signature" required></input>
             </div>
             <ModalButtonWrapper>
               <button type="submit">
@@ -45,7 +65,7 @@ const CharacterModal = ({ onClose, showModal }) => {
   )
 }
 
-export default CharacterModal
+export default StoryEntryModal
 
 const ModalContainer = styled.div`
   position: fixed;

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 import campaignBg from '../assets/images/campaignbg.jpg'
@@ -10,6 +10,38 @@ import logo from '../assets/images/logo.png'
 
 const HeroImg = () => {
   let location = useLocation()
+  let navigate = useNavigate()
+
+  const handleNewCampaignSubmit = (e) => {
+    e.preventDefault()
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: e.target[0].value }),
+    }
+    console.log(options)
+    fetch('http://localhost:8080/campaigns', options)
+      .then((res) => res.json())
+      .then((campaign) => navigate(`/campaigns/${campaign.name}`))
+  }
+
+  const handleGetCampaignSubmit = (e) => {
+    e.preventDefault()
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    fetch(`http://localhost:8080/campaigns/${e.target[0].value}`, options)
+      .then((res) => res.json())
+      .then((campaign) => navigate(`/campaigns/${campaign.name}`))
+  }
 
   if (location.pathname === '/') {
     return (
@@ -25,35 +57,34 @@ const HeroImg = () => {
           <HomePageContainer>
             <FormsContainer>
               <h2>Go to existing campaign</h2>
-              <Form>
-                <label htmlFor="existingCampaign"></label>
+              <Form onSubmit={handleGetCampaignSubmit}>
+                <label htmlFor="existingCampaignName"></label>
                 <input
                   type="text"
-                  id="existingCampaign"
-                  name="existingCampaign "
+                  id="existingCampaignName"
+                  name="existingCampaign"
+                  required
                 ></input>
-                <button>
-                  <Link to="/campaign">Go to campaign</Link>
-                </button>
+                <button type="submit">Go to campaign</button>
               </Form>
+
               <h2>Create new campaign</h2>
-              <Form>
+              <Form onSubmit={handleNewCampaignSubmit}>
                 <label htmlFor="createCampaign"></label>
                 <input
                   type="text"
                   id="createCampaign"
-                  name="createCampaign "
+                  name="createCampaign"
+                  required
                 ></input>
-                <button>
-                  <Link to="/campaign">Create campaign</Link>
-                </button>
+                <button type="submit">Create campaign</button>
               </Form>
             </FormsContainer>
           </HomePageContainer>
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname === '/campaign') {
+  } else if (location.pathname.startsWith('/campaigns')) {
     return (
       <HeroImgContainer
         imgObj={campaignBg}
@@ -64,7 +95,7 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname === '/campaign/characters') {
+  } else if (location.pathname.endsWith('/characters')) {
     return (
       <HeroImgContainer
         imgObj={herosBg}
@@ -75,7 +106,7 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname === '/campaign/graveyard') {
+  } else if (location.pathname.endsWith('/graveyard')) {
     return (
       <HeroImgContainer
         imgObj={graveyardBg}

@@ -28,8 +28,8 @@ const arraysAreEqual = (arr1, arr2) => {
 }
 
 class Character extends Model {
-  getLevelEntry() {
-    return Level.findOne({
+  async getLevelEntry() {
+    return await Level.findOne({
       where: {
         class: this.class,
         experiencePointsRequired: {
@@ -78,8 +78,10 @@ Character.init(
     },
     level: {
       type: DataTypes.INTEGER,
-      get() {
-        return this.getLevelEntry().getDataValue('level')
+      async get() {
+        return await this.getLevelEntry().then((response) => {
+          return response.getDataValue('level')
+        })
       },
     },
     attributes: {
@@ -235,6 +237,7 @@ const Campaign = sequelize.define('Campaign', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
 })
 
@@ -245,12 +248,12 @@ const Journal = sequelize.define('Journal', {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   body: {
     type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  signature: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 })

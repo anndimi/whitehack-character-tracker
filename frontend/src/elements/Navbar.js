@@ -1,10 +1,11 @@
 import React from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import logo from '../assets/images/logo.png'
 
 const Navbar = () => {
   let location = useLocation()
+  const { name } = useParams()
 
   return (
     <NavbarContainer>
@@ -14,20 +15,22 @@ const Navbar = () => {
             <img src={logo} />
           </LogoContainer>
         </Link>
+
         <Link
-          to="/campaign"
+          to={`/campaigns/${name}`}
           style={
-            location.pathname === '/campaign'
+            location.pathname === `/campaigns/${name}`
               ? { textDecoration: 'line-through' }
               : {}
           }
         >
           Campaign
         </Link>
+
         <Link
-          to="characters"
+          to={`/campaigns/${name}/characters`}
           style={
-            location.pathname === '/campaign/characters'
+            location.pathname === `/campaigns/${name}/characters`
               ? { textDecoration: 'line-through' }
               : {}
           }
@@ -35,9 +38,9 @@ const Navbar = () => {
           Characters
         </Link>
         <Link
-          to="graveyard"
+          to={`/campaigns/${name}/graveyard`}
           style={
-            location.pathname === '/campaign/graveyard'
+            location.pathname === `/campaigns/${name}/graveyard`
               ? { textDecoration: 'line-through' }
               : {}
           }

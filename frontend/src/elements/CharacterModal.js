@@ -1,11 +1,91 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import crossIcon from '../assets/icons/cross-icon.png'
 import closeIcon from '../assets/icons/close-icon.png'
 
-const CharacterModal = ({ onClose, showModal }) => {
+const CharacterModal = ({ onClose, showModal, campaignName }) => {
+  const [newCharacter, setNewCharacter] = useState({
+    campaignName: campaignName,
+    name: '',
+    species: '',
+    class: '',
+    vocation: '',
+    attributes: {
+      str: {
+        score: '',
+        groups: [],
+      },
+      dex: {
+        score: '',
+        groups: [],
+      },
+      con: {
+        score: '',
+        groups: [],
+      },
+      int: {
+        score: '',
+        groups: [],
+      },
+      wis: {
+        score: '',
+        groups: [],
+      },
+      cha: {
+        score: '',
+        groups: [],
+      },
+    },
+  })
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
+    console.log(e)
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        campaignName: campaignName,
+        name: e.target[0].value,
+        species: e.target[1].value,
+        class: e.target[2].value,
+        vocation: e.target[3].value,
+        attributes: {
+          str: {
+            score: e.target[4].value,
+            groups: [e.target[5].value],
+          },
+          dex: {
+            score: e.target[6].value,
+            groups: [e.target[7].value],
+          },
+          con: {
+            score: e.target[8].value,
+            groups: [e.target[9].value],
+          },
+          int: {
+            score: e.target[10].value,
+            groups: [e.target[11].value],
+          },
+          wis: {
+            score: e.target[12].value,
+            groups: [e.target[13].value],
+          },
+          cha: {
+            score: e.target[14].value,
+            groups: [e.target[15].value],
+          },
+        },
+      }),
+    }
+
+    fetch('http://localhost:8080/characters', options)
+      .then((res) => res.json())
+      .then((data) => setNewCharacter(data))
+      .then(() => console.log(newCharacter))
 
     onClose()
   }
@@ -27,23 +107,61 @@ const CharacterModal = ({ onClose, showModal }) => {
           <Form onSubmit={handleFormSubmit}>
             <div>
               <label htmlFor="name">Name </label>
-              <input type="text" name="name"></input>
+              <input type="text" name="name" required></input>
             </div>
 
             <div>
               <label htmlFor="species">Species </label>
-              <input type="text" name="name"></input>
+              <input type="text" name="name" required></input>
             </div>
 
             <div>
               <label htmlFor="class">Class </label>
-              <input type="text" name="class"></input>
+              <input type="text" name="class" required></input>
             </div>
 
             <div>
-              <label htmlFor="Vocation">Vocation </label>
-              <input type="text" name="vocation"></input>
+              <label htmlFor="vocation">Vocation </label>
+              <input type="text" name="vocation" required></input>
             </div>
+            <h4>Attributes</h4>
+            <AttributesContainer>
+              <label htmlFor="str">
+                Str
+                <input type="text" name="str" required />
+                <input type="text" name="str" />
+              </label>
+
+              <label htmlFor="dex">
+                Dex
+                <input type="text" name="dex" required />
+                <input type="text" name="dex" />
+              </label>
+
+              <label htmlFor="con">
+                Con
+                <input type="text" name="con" required />
+                <input type="text" name="con" />
+              </label>
+
+              <label htmlFor="int">
+                Int
+                <input type="text" name="int" required />
+                <input type="text" name="int" />
+              </label>
+
+              <label htmlFor="wis">
+                Wis
+                <input type="text" name="wis" required />
+                <input type="text" name="wis" />
+              </label>
+
+              <label htmlFor="cha">
+                Cha
+                <input type="text" name="cha" required />
+                <input type="text" name="cha" />
+              </label>
+            </AttributesContainer>
 
             <ModalButtonWrapper>
               <button type="submit">
@@ -58,6 +176,20 @@ const CharacterModal = ({ onClose, showModal }) => {
 }
 
 export default CharacterModal
+
+const AttributesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  input {
+    width: 25% !important;
+  }
+`
 
 const ModalContainer = styled.div`
   position: fixed;

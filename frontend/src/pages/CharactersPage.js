@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
 import CharacterModal from '../elements/CharacterModal'
@@ -9,12 +9,22 @@ import strongIcon from '../assets/icons/strong-icon.png'
 import deftIcon from '../assets/icons/deft-icon.png'
 import divider from '../assets/images/divider.png'
 import { Divider } from '../styles/global'
+import Navbar from '../elements/Navbar'
 
-const CharactersPage = ({ characters }) => {
+const CharactersPage = () => {
   const [showModal, setShowModal] = useState(false)
+  const [characters, setCharacters] = useState([])
+  const { name } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/campaigns/${name}/characters`)
+      .then((res) => res.json())
+      .then((data) => setCharacters(data))
+  }, [name])
 
   return (
     <PageContainer>
+      <Navbar />
       <PageWrapper>
         <h1>Summon new hero</h1>
         <button type="submit" onClick={() => setShowModal(true)}>
@@ -23,44 +33,20 @@ const CharactersPage = ({ characters }) => {
         <CharacterModal
           onClose={() => setShowModal(false)}
           showModal={showModal}
+          campaignName={name}
         />
         <CharactersWrapper>
           <Divider src={divider} alt="divider" />
-          <SingleCharacterContainer>
-            <div>
-              <img src={deftIcon} />
-              Idris Kushul
-            </div>
-            <span>Level 1</span>
-          </SingleCharacterContainer>
-          <SingleCharacterContainer>
-            <div>
-              <img src={wiseIcon} /> Nicholas Black Elk
-            </div>
-            <span>Level 1</span>
-          </SingleCharacterContainer>
-          <SingleCharacterContainer>
-            <div>
-              <img src={wiseIcon} /> Baksha Greenleaf
-            </div>
-            <span>Level 1</span>
-          </SingleCharacterContainer>
-          <SingleCharacterContainer>
-            <div>
-              <img src={strongIcon} /> Bromir
-            </div>
-            <span>Level 4</span>
-          </SingleCharacterContainer>
-          {/* {characters.map((character) => (
-            <CharacterListContainer key={character._id}>
+          {characters.map((character) => (
+            <SingleCharacterContainer key={character.id}>
               <Link
-                to={`/characters/character/${character._id}`}
+                to={`/campaigns/${name}/characters/${name}`}
                 onClick={() => window.scrollTo(0, 0)}
               >
                 {character.name}
               </Link>
-            </CharacterListContainer>
-          ))} */}
+            </SingleCharacterContainer>
+          ))}
           <Divider src={divider} alt="divider" />
         </CharactersWrapper>
       </PageWrapper>
@@ -69,19 +55,6 @@ const CharactersPage = ({ characters }) => {
 }
 
 export default CharactersPage
-
-// const CharacterListContainer = styled.div`
-//   width: 50%;
-//   max-width: 400px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   a {
-//     text-decoration: none;
-//     color: black;
-//     font-size: 20px;
-//   }
-// `
 
 const PageWrapper = styled.div`
   display: flex;

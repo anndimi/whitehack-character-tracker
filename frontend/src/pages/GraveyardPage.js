@@ -9,10 +9,12 @@ import gravestone5 from '../assets/images/gravestone5.png'
 import divider from '../assets/images/divider.png'
 import cross from '../assets/images/cross.png'
 import { Divider } from '../styles/global'
+import Navbar from '../elements/Navbar'
 
 const GraveyardPage = () => {
   return (
     <PageContainer>
+      <Navbar />
       <PageWrapper>
         <h1>Requiescat in pace, heroum..</h1>
         <CrossImg src={cross} />

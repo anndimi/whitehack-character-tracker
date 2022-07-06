@@ -1,5 +1,5 @@
 // Initialize and configure database
-const { sequelize, Character } = require('../database/models')
+const { sequelize, Character, Campaign } = require('../database/models')
 
 const getCharacter = async function (id) {
   return Character.findOne({
@@ -9,15 +9,27 @@ const getCharacter = async function (id) {
   })
 }
 
-const getCharactersByCampaign = async function (campaignId) {
+const getCharactersByCampaign = async function (campaignName) {
+  const campaignId = await Campaign.findOne({
+    where: { name: campaignName },
+  }).then((campaign) => {
+    return campaign.getDataValue('id')
+  })
+
   return Character.findAll({
     where: {
-      campaignId: campaignId,
+      CampaignId: campaignId,
     },
   })
 }
 
-const createCharacter = async function (campaignId, data) {
+const createCharacter = async function (data) {
+  const campaignId = await Campaign.findOne({
+    where: { name: data.campaignName },
+  }).then((campaign) => {
+    return campaign.getDataValue('id')
+  })
+
   return Character.create({
     CampaignId: campaignId,
     name: data.name,

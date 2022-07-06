@@ -6,7 +6,13 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 app.use(express.json())
-app.use(cors())
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions))
 
 // Import functions
 const {
@@ -63,6 +69,7 @@ app.post('/characters', async (req, res) => {
       res.send(result)
     },
     (reason) => {
+      console.log(reason)
       res.sendStatus(500)
     }
   )
@@ -94,7 +101,7 @@ app.delete('/characters/:id', async (req, res) => {
  * ROUTES: CAMPAIGNS
  */
 app.post('/campaigns', async (req, res) => {
-  await createCampaign(req.body).then(
+  await createCampaign(req.body.name).then(
     (result) => {
       res.send(result)
     },
@@ -104,8 +111,8 @@ app.post('/campaigns', async (req, res) => {
   )
 })
 
-app.get('/campaigns/:id', async (req, res) => {
-  await getCampaign(req.params.id).then(
+app.get('/campaigns/:name', async (req, res) => {
+  await getCampaign(req.params.name).then(
     (result) => {
       res.send(result)
     },
@@ -115,8 +122,8 @@ app.get('/campaigns/:id', async (req, res) => {
   )
 })
 
-app.get('/campaigns/:id/characters', async (req, res) => {
-  await getCharactersByCampaign(req.params.id).then(
+app.get('/campaigns/:name/characters', async (req, res) => {
+  await getCharactersByCampaign(req.params.name).then(
     (result) => {
       res.send(result)
     },
@@ -126,8 +133,8 @@ app.get('/campaigns/:id/characters', async (req, res) => {
   )
 })
 
-app.get('/campaigns/:id/journals', async (req, res) => {
-  await getJournalsByCampaign(req.params.id).then(
+app.get('/campaigns/:name/journals', async (req, res) => {
+  await getJournalsByCampaign(req.params.name).then(
     (result) => {
       res.send(result)
     },
@@ -137,7 +144,7 @@ app.get('/campaigns/:id/journals', async (req, res) => {
   )
 })
 
-app.patch('/campaigns/:id', async (req, res) => {
+app.patch('/campaigns/:name', async (req, res) => {
   await updateCampaign(req.params.id, req.body).then(
     (result) => {
       return res.send(result)
@@ -148,7 +155,7 @@ app.patch('/campaigns/:id', async (req, res) => {
   )
 })
 
-app.delete('/campaigns/:id', async (req, res) => {
+app.delete('/campaigns/:name', async (req, res) => {
   await deleteCampaign(req.params.id).then(
     (result) => {
       res.send(result)

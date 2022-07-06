@@ -1,5 +1,10 @@
 const { Op } = require('sequelize')
-const { sequelize, Journal, Character } = require('../database/models')
+const {
+  sequelize,
+  Journal,
+  Character,
+  Campaign,
+} = require('../database/models')
 
 const getJournal = async function (id) {
   return Journal.findOne({
@@ -13,9 +18,16 @@ const getJournalsByCharacter = async function (characterId) {
   return Journal.findAll({ where: { CharacterId: characterId } })
 }
 
-const getJournalsByCampaign = async function (campaignId) {
+const getJournalsByCampaign = async function (campaignName) {
+  const campaignId = await Campaign.findOne({
+    where: { name: campaignName },
+  }).then((campaign) => {
+    return campaign.getDataValue('id')
+  })
+  console.log(campaignId)
+
   const characterIds = await Character.findAll({
-    where: { campaignId: campaignId },
+    where: { CampaignId: campaignId },
   }).then((characters) => {
     return characters.map((character) => {
       return character.id
@@ -28,8 +40,8 @@ const createJournal = async function (data) {
   return Journal.create({
     CampaignId: data.campaignId,
     CharacterId: data.characterId,
-    title: data.title,
     body: data.body,
+    signature: data.signature,
   })
 }
 
