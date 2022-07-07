@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import crossIcon from '../assets/icons/cross-icon.png'
 import closeIcon from '../assets/icons/close-icon.png'
 
-const StoryEntryModal = ({ onClose, showModal }) => {
+const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
   const [newJournalEntry, setNewJournalEntry] = useState({
+    campaignName: campaignName,
+    characterName: '',
     body: '',
-    signature: '',
   })
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
+    console.log(e)
 
     const options = {
       method: 'POST',
@@ -18,16 +21,19 @@ const StoryEntryModal = ({ onClose, showModal }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        campaignName: campaignName,
+        characterName: e.target[1].value,
         body: e.target[0].value,
-        signature: e.target[1].value,
       }),
     }
 
     fetch('http://localhost:8080/journals', options)
       .then((res) => res.json())
       .then((data) => setNewJournalEntry(data))
+      .then(() => console.log(newJournalEntry))
 
     onClose()
+    window.location.reload()
   }
 
   if (!showModal) {
@@ -51,7 +57,13 @@ const StoryEntryModal = ({ onClose, showModal }) => {
             </div>
             <div>
               <label htmlFor="signature">Signed </label>
-              <input type="text" name="signature" required></input>
+              <select name="signature" required>
+                {characters.map((character) => (
+                  <option value={character.name} key={character.id}>
+                    {character.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <ModalButtonWrapper>
               <button type="submit">

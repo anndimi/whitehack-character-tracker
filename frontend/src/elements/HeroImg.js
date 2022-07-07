@@ -6,11 +6,14 @@ import campaignBg from '../assets/images/campaignbg.jpg'
 import herosBg from '../assets/images/herosbg.jpg'
 import homeBg from '../assets/images/homebg.jpg'
 import graveyardBg from '../assets/images/graveyardbg.jpg'
+import heroBg from '../assets/images/herobg.jpg'
 import logo from '../assets/images/logo.png'
 
 const HeroImg = () => {
   let location = useLocation()
   let navigate = useNavigate()
+
+  console.log(location.pathname)
 
   const handleNewCampaignSubmit = (e) => {
     e.preventDefault()
@@ -84,7 +87,7 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname.startsWith('/campaigns')) {
+  } else if (/\/campaigns\/[^/]*\/?(?!.)/gm.test(location.pathname)) {
     return (
       <HeroImgContainer
         imgObj={campaignBg}
@@ -95,7 +98,9 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname.endsWith('/characters')) {
+  } else if (
+    /\/campaigns\/[^/]*\/characters\/?(?!.)/gm.test(location.pathname)
+  ) {
     return (
       <HeroImgContainer
         imgObj={herosBg}
@@ -106,7 +111,9 @@ const HeroImg = () => {
         </HeroTitle>
       </HeroImgContainer>
     )
-  } else if (location.pathname.endsWith('/graveyard')) {
+  } else if (
+    /\/campaigns\/[^/]*\/graveyard\/?(?!.)/gm.test(location.pathname)
+  ) {
     return (
       <HeroImgContainer
         imgObj={graveyardBg}
@@ -114,6 +121,19 @@ const HeroImg = () => {
       >
         <HeroTitle>
           <h1>The Deceased</h1>
+        </HeroTitle>
+      </HeroImgContainer>
+    )
+  } else if (
+    /\/campaigns\/[^/]*\/characters\/[^/]*?(?!.)/gm.test(location.pathname)
+  ) {
+    return (
+      <HeroImgContainer
+        imgObj={heroBg}
+        style={{ backgroundPosition: 'top center' }}
+      >
+        <HeroTitle>
+          <h1>Your hero</h1>
         </HeroTitle>
       </HeroImgContainer>
     )

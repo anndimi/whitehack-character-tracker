@@ -41,8 +41,8 @@ const {
 /*
  * ROUTES: CHARACTERS
  */
-app.get('/characters/:id', async (req, res) => {
-  await getCharacter(req.params.id).then(
+app.get('/characters/:name', async (req, res) => {
+  await getCharacter(req.params.name).then(
     (result) => {
       res.send(result)
     },

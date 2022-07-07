@@ -88,6 +88,7 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
       .then(() => console.log(newCharacter))
 
     onClose()
+    window.location.reload()
   }
 
   if (!showModal) {

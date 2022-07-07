@@ -12,9 +12,9 @@ const CampaignPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [campaign, setCampaign] = useState({})
   const [journals, setJournals] = useState([])
+  const [characters, setCharacters] = useState([])
   const { name } = useParams()
   const dayjs = require('dayjs')
-  console.log(journals)
 
   useEffect(() => {
     fetch(`http://localhost:8080/campaigns/${name}`)
@@ -26,6 +26,13 @@ const CampaignPage = () => {
     fetch(`http://localhost:8080/campaigns/${name}/journals`)
       .then((res) => res.json())
       .then((data) => setJournals(data))
+  }, [name])
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/campaigns/${name}/characters`)
+      .then((res) => res.json())
+      .then((data) => setCharacters(data))
+      .then(() => console.log(characters))
   }, [name])
 
   return (
@@ -40,20 +47,26 @@ const CampaignPage = () => {
         <StoryEntryModal
           onClose={() => setShowModal(false)}
           showModal={showModal}
+          campaignName={name}
+          characters={characters}
         />
-        <CampaignWrapper>
-          {journals.reverse().map((journal) => (
-            <JournalsContainer key={journal.id}>
-              <Divider src={divider} alt="divider" />
-              <h4>{dayjs(journal.createdAt).format('DD MMMM')}</h4>
-              <p>{journal.body}</p>
-              <EntrySignature>
-                <SealImg src={sealImg} />
-                <span>{journal.signature}</span>
-              </EntrySignature>
-            </JournalsContainer>
-          ))}
-        </CampaignWrapper>
+        {journals.length === 0 ? (
+          <Divider src={divider} alt="divider" />
+        ) : (
+          <CampaignWrapper>
+            {[...journals].reverse().map((journal) => (
+              <JournalsContainer key={journal.id}>
+                <Divider src={divider} alt="divider" />
+                <h4>{dayjs(journal.createdAt).format('DD MMMM')}</h4>
+                <p>{journal.body}</p>
+                <EntrySignature>
+                  <SealImg src={sealImg} />
+                  <span>{journal.signature}</span>
+                </EntrySignature>
+              </JournalsContainer>
+            ))}
+          </CampaignWrapper>
+        )}
       </PageContainer>
     </>
   )

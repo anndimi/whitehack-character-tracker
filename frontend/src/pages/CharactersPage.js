@@ -20,6 +20,7 @@ const CharactersPage = () => {
     fetch(`http://localhost:8080/campaigns/${name}/characters`)
       .then((res) => res.json())
       .then((data) => setCharacters(data))
+      .then(() => console.log(characters))
   }, [name])
 
   return (
@@ -40,9 +41,18 @@ const CharactersPage = () => {
           {characters.map((character) => (
             <SingleCharacterContainer key={character.id}>
               <Link
-                to={`/campaigns/${name}/characters/${name}`}
+                to={`/campaigns/${name}/characters/${character.id}`}
                 onClick={() => window.scrollTo(0, 0)}
               >
+                {character.class === 'Deft' ? (
+                  <img src={deftIcon} alt="deft" />
+                ) : character.class === 'Wise' ? (
+                  <img src={wiseIcon} alt="wise" />
+                ) : character.class === 'Strong' ? (
+                  <img src={strongIcon} alt="strong" />
+                ) : (
+                  {}
+                )}{' '}
                 {character.name}
               </Link>
             </SingleCharacterContainer>
@@ -100,11 +110,16 @@ const CharactersWrapper = styled.div`
 const SingleCharacterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
+  align-items: center;
   width: 80%;
   padding: 5px 0;
   border-top: 3px double transparent;
   border-bottom: 3px double transparent;
+  a {
+    text-decoration: none;
+    color: #393939;
+    cursor: pointer;
+  }
   img {
     width: 100%;
     max-width: 40px;

@@ -37,11 +37,23 @@ const getJournalsByCampaign = async function (campaignName) {
 }
 
 const createJournal = async function (data) {
+  const campaignId = await Campaign.findOne({
+    where: { name: data.campaignName },
+  }).then((campaign) => {
+    return campaign.getDataValue('id')
+  })
+
+  const characterId = await Character.findOne({
+    where: { name: data.characterName },
+  }).then((character) => {
+    return character.getDataValue('id')
+  })
+
   return Journal.create({
-    CampaignId: data.campaignId,
-    CharacterId: data.characterId,
+    CampaignId: campaignId,
+    CharacterId: characterId,
     body: data.body,
-    signature: data.signature,
+    signature: data.characterName,
   })
 }
 

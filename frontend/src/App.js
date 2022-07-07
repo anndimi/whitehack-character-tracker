@@ -25,7 +25,7 @@ function App() {
             element={<CharactersPage />}
           />
           <Route
-            path="/campaigns/:name/characters/:name"
+            path="/campaigns/:name/characters/:id"
             element={<CharacterPage />}
           />
           <Route
