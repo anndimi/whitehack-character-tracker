@@ -13,8 +13,6 @@ const HeroImg = () => {
   let location = useLocation()
   let navigate = useNavigate()
 
-  console.log(location.pathname)
-
   const handleNewCampaignSubmit = (e) => {
     e.preventDefault()
 

@@ -26,14 +26,7 @@ const getJournalsByCampaign = async function (campaignName) {
   })
   console.log(campaignId)
 
-  const characterIds = await Character.findAll({
-    where: { CampaignId: campaignId },
-  }).then((characters) => {
-    return characters.map((character) => {
-      return character.id
-    })
-  })
-  return Journal.findAll({ where: { characterId: { [Op.or]: characterIds } } })
+  return Journal.findAll({ where: { CampaignId: campaignId } })
 }
 
 const createJournal = async function (data) {
