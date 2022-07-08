@@ -55,7 +55,7 @@ const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
               <label htmlFor="entry"> </label>
               <textarea type="text" name="entry" required></textarea>
             </div>
-            <div>
+            <SignatureSelect>
               <label htmlFor="signature">Signed </label>
               <select name="signature" required>
                 {characters.map((character) => (
@@ -64,7 +64,7 @@ const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
                   </option>
                 ))}
               </select>
-            </div>
+            </SignatureSelect>
             <ModalButtonWrapper>
               <button type="submit">
                 <img src={crossIcon} alt="add hero" />
@@ -194,6 +194,28 @@ const ModalButtonWrapper = styled.div`
     }
     :active {
       transform: scale(1);
+    }
+  }
+`
+
+const SignatureSelect = styled.div`
+  font-size: 20px;
+  select {
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px dotted #393939;
+    font-family: inherit;
+    color: #393939;
+    font-size: 20px;
+    width: 60%;
+    background-color: transparent;
+    :focus {
+      border-bottom: 1px dotted #393939;
+      outline-offset: 0px !important;
+      outline: none !important;
+      background-color: transparent;
+    }
+    option {
     }
   }
 `

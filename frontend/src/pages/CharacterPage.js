@@ -30,8 +30,10 @@ const CharacterPage = () => {
         <PageContainer>
           <Navbar />
           <PageWrapper>
-            <h1 style={{ textAlign: 'center' }}>{character.name}</h1>
-            <h1>{character.experiencePoints} XP</h1>
+            <h1 style={{ textAlign: 'center' }}>
+              {character.name}, {character.experiencePoints} XP
+            </h1>
+
             <Divider src={divider} alt="divider" />
             <CharacterWrapper>
               <CharacterContainer>
@@ -39,6 +41,7 @@ const CharacterPage = () => {
                   <h1>
                     {character.species}, {character.vocation}
                   </h1>
+
                   {character.class === 'Deft' ? (
                     <img src={deftIcon} alt="deft" />
                   ) : character.class === 'Wise' ? (
