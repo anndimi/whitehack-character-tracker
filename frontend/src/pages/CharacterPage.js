@@ -58,6 +58,7 @@ const CharacterPage = () => {
                   <h1>
                     {character.species}, {character.vocation}
                   </h1>
+
                   {character.class === 'Deft' ? (
                     <img src={deftIcon} alt="deft" />
                   ) : character.class === 'Wise' ? (
