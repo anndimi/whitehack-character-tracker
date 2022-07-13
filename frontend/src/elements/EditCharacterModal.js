@@ -1,55 +1,70 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import crossIcon from '../assets/icons/cross-icon.png'
 import closeIcon from '../assets/icons/close-icon.png'
 
-const CharacterModal = ({ onClose, showModal, campaignName }) => {
-  const [newCharacter, setNewCharacter] = useState({
-    campaignName: campaignName,
-    name: '',
-    species: '',
-    class: '',
-    vocation: '',
+const EditCharacterModal = (props) => {
+  const { id } = useParams()
+
+  const [editCharacter, setEditCharacter] = useState({
+    name: props.name,
+    species: props.species,
+    class: props.class,
+    vocation: props.vocation,
     attributes: {
       str: {
-        score: '',
+        score: props.str,
         groups: [],
       },
       dex: {
-        score: '',
+        score: props.dex,
         groups: [],
       },
       con: {
-        score: '',
+        score: props.con,
         groups: [],
       },
       int: {
-        score: '',
+        score: props.int,
         groups: [],
       },
       wis: {
-        score: '',
+        score: props.wis,
         groups: [],
       },
       cha: {
-        score: '',
+        score: props.cha,
         groups: [],
       },
     },
-    background: '',
+    background: props.background,
   })
+
+  const handleChange = (e) => {
+    const value = e.target.value
+
+    if (['str', 'dex', 'con', 'int', 'wis', 'cha'].includes(e.target.name)) {
+      let currentAttributes = editCharacter.attributes
+      let targetAttributeKey = e.target.name
+      currentAttributes[targetAttributeKey].score = e.target.value
+      let updatedCharacter = { ...editCharacter, attributes: currentAttributes }
+      setEditCharacter(updatedCharacter)
+    } else {
+      setEditCharacter({ ...editCharacter, [e.target.name]: value })
+    }
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
     console.log(e)
 
     const options = {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        campaignName: campaignName,
         name: e.target[0].value,
         species: e.target[1].value,
         class: e.target[2].value,
@@ -84,25 +99,25 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
       }),
     }
 
-    fetch('http://localhost:8080/characters', options)
+    fetch(`http://localhost:8080/characters/${id}`, options)
       .then((res) => res.json())
-      .then((data) => setNewCharacter(data))
-      .then(() => console.log(newCharacter))
+      .then((data) => setEditCharacter(data))
+      .then(() => console.log(editCharacter))
 
-    onClose()
-    window.location.reload()
+    props.onClose()
+    // window.location.reload()
   }
 
-  if (!showModal) {
+  if (!props.showModal) {
     return null
   }
 
   return (
-    <ModalContainer onClick={onClose}>
+    <ModalContainer onClick={props.onClose}>
       <ModalWrapper onClick={(event) => event.stopPropagation()}>
         <ModalHeader>
-          <h3>Add new hero</h3>
-          <CloseButton onClick={onClose}>
+          <h3>Edit hero</h3>
+          <CloseButton onClick={props.onClose}>
             <img src={closeIcon} alt="Close" />
           </CloseButton>
         </ModalHeader>
@@ -110,58 +125,111 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
           <Form onSubmit={handleFormSubmit}>
             <div>
               <label htmlFor="name">Name </label>
-              <input type="text" name="name" required></input>
+              <input
+                type="text"
+                name="name"
+                value={editCharacter.name}
+                onChange={handleChange}
+              />
             </div>
 
             <div>
               <label htmlFor="species">Species </label>
-              <input type="text" name="species" required></input>
+              <input
+                type="text"
+                name="species"
+                value={editCharacter.species}
+                onChange={handleChange}
+              ></input>
             </div>
 
             <div>
               <label htmlFor="class">Class </label>
-              <input type="text" name="class" required></input>
+              <input
+                type="text"
+                name="class"
+                value={editCharacter.class}
+                onChange={handleChange}
+              ></input>
             </div>
 
             <div>
               <label htmlFor="vocation">Vocation </label>
-              <input type="text" name="vocation" required></input>
+              <input
+                type="text"
+                name="vocation"
+                value={editCharacter.vocation}
+                onChange={handleChange}
+              ></input>
             </div>
-            <h4>Attributes</h4>
+            <ScoreGroupsContainer>
+              <h4>Attributes</h4>
+              <h4>Groups</h4>
+            </ScoreGroupsContainer>
             <AttributesContainer>
               <label htmlFor="str">
                 Str
-                <input type="text" name="str" required />
+                <input
+                  type="text"
+                  name="str"
+                  value={editCharacter.attributes.str.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="str" />
               </label>
 
               <label htmlFor="dex">
                 Dex
-                <input type="text" name="dex" required />
+                <input
+                  type="text"
+                  name="dex"
+                  value={editCharacter.attributes.dex.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="dex" />
               </label>
 
               <label htmlFor="con">
                 Con
-                <input type="text" name="con" required />
+                <input
+                  type="text"
+                  name="con"
+                  value={editCharacter.attributes.con.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="con" />
               </label>
 
               <label htmlFor="int">
                 Int
-                <input type="text" name="int" required />
+                <input
+                  type="text"
+                  name="int"
+                  value={editCharacter.attributes.int.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="int" />
               </label>
 
               <label htmlFor="wis">
                 Wis
-                <input type="text" name="wis" required />
+                <input
+                  type="text"
+                  name="wis"
+                  value={editCharacter.attributes.wis.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="wis" />
               </label>
 
               <label htmlFor="cha">
                 Cha
-                <input type="text" name="cha" required />
+                <input
+                  type="text"
+                  name="cha"
+                  value={editCharacter.attributes.cha.score}
+                  onChange={handleChange}
+                />
                 <input type="text" name="cha" />
               </label>
             </AttributesContainer>
@@ -169,7 +237,12 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
             <div>
               <h4>Hero Background</h4>
               <label htmlFor="background"> </label>
-              <textarea type="text" name="background"></textarea>
+              <textarea
+                type="text"
+                name="background"
+                value={editCharacter.background}
+                onChange={handleChange}
+              ></textarea>
             </div>
 
             <ModalButtonWrapper>
@@ -184,7 +257,12 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
   )
 }
 
-export default CharacterModal
+export default EditCharacterModal
+
+const ScoreGroupsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const AttributesContainer = styled.div`
   display: flex;

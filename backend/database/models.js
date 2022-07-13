@@ -76,6 +76,9 @@ Character.init(
         min: 0,
       },
     },
+    background: {
+      type: DataTypes.STRING,
+    },
     level: {
       type: DataTypes.INTEGER,
       async get() {

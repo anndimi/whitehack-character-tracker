@@ -6,11 +6,14 @@ import wiseIcon from '../assets/icons/wise-icon.png'
 import strongIcon from '../assets/icons/strong-icon.png'
 import deftIcon from '../assets/icons/deft-icon.png'
 import { Divider } from '../styles/global'
+import EditCharacterModal from '../elements/EditCharacterModal'
 import divider from '../assets/images/divider.png'
+import quilIcon from '../assets/icons/quil-icon.png'
 
 const CharacterPage = () => {
   const [character, setCharacter] = useState({})
   const [loading, setLoading] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const { id } = useParams()
 
   useEffect(() => {
@@ -18,9 +21,7 @@ const CharacterPage = () => {
       .then((res) => res.json())
       .then((data) => setCharacter(data))
       .finally(() => setLoading(false))
-  }, [])
-
-  console.log(character)
+  }, [id])
 
   return (
     <>
@@ -32,6 +33,24 @@ const CharacterPage = () => {
           <PageWrapper>
             <h1 style={{ textAlign: 'center' }}>{character.name}</h1>
             <h1>{character.experiencePoints} XP</h1>
+            <button type="submit" onClick={() => setShowModal(true)}>
+              <img src={quilIcon} alt="add hero" />
+            </button>
+            <EditCharacterModal
+              onClose={() => setShowModal(false)}
+              showModal={showModal}
+              name={character.name}
+              species={character.species}
+              class={character.class}
+              vocation={character.vocation}
+              str={character.attributes.str.score}
+              dex={character.attributes.dex.score}
+              con={character.attributes.con.score}
+              int={character.attributes.int.score}
+              wis={character.attributes.wis.score}
+              cha={character.attributes.cha.score}
+              background={character.background}
+            />
             <Divider src={divider} alt="divider" />
             <CharacterWrapper>
               <CharacterContainer>
@@ -65,6 +84,7 @@ const CharacterPage = () => {
             </CharacterWrapper>
             <Divider src={divider} alt="divider" />
             <h1>Background</h1>
+            <p>{character.background}</p>
           </PageWrapper>
         </PageContainer>
       )}
