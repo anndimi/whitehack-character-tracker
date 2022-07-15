@@ -41,8 +41,8 @@ const {
 /*
  * ROUTES: CHARACTERS
  */
-app.get('/characters/:name', async (req, res) => {
-  await getCharacter(req.params.name).then(
+app.get('/characters/:id', async (req, res) => {
+  await getCharacter(req.params.id).then(
     (result) => {
       res.send(result)
     },
@@ -78,6 +78,7 @@ app.post('/characters', async (req, res) => {
 app.patch('/characters/:id', async (req, res) => {
   await updateCharacter(req.params.id, req.body).then(
     (result) => {
+      console.log('bajs', result)
       return res.send(result)
     },
     (reason) => {

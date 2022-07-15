@@ -78,6 +78,7 @@ Character.init(
     },
     background: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     level: {
       type: DataTypes.INTEGER,

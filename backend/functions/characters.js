@@ -24,6 +24,8 @@ const getCharactersByCampaign = async function (campaignName) {
 }
 
 const createCharacter = async function (data) {
+  console.log('create', data)
+
   const campaignId = await Campaign.findOne({
     where: { name: data.campaignName },
   }).then((campaign) => {
@@ -38,12 +40,14 @@ const createCharacter = async function (data) {
     vocation: data.vocation,
     experiencePoints: data.experiencePoints,
     attributes: data.attributes,
+    background: data.background,
+    level: data.level,
   })
 }
 
 const updateCharacter = async function (id, data) {
   const character = await getCharacter(id)
-  return character.update({ data })
+  return character.update(data)
 }
 
 const deleteCharacter = async function (id) {

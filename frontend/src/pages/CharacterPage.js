@@ -33,9 +33,9 @@ const CharacterPage = () => {
           <PageWrapper>
             <h1 style={{ textAlign: 'center' }}>{character.name}</h1>
             <h1>{character.experiencePoints} XP</h1>
-            <button type="submit" onClick={() => setShowModal(true)}>
+            <EditCharacterBtn type="submit" onClick={() => setShowModal(true)}>
               <img src={quilIcon} alt="add hero" />
-            </button>
+            </EditCharacterBtn>
             <EditCharacterModal
               onClose={() => setShowModal(false)}
               showModal={showModal}
@@ -84,8 +84,11 @@ const CharacterPage = () => {
               </CharacterContainer>
             </CharacterWrapper>
             <Divider src={divider} alt="divider" />
-            <h1>Background</h1>
-            <p>{character.background}</p>
+            <BackgroundContainer>
+              <h1>Background</h1>
+              <p>{character.background}</p>
+            </BackgroundContainer>
+            <Divider src={divider} alt="divider" />
           </PageWrapper>
         </PageContainer>
       )}
@@ -94,6 +97,32 @@ const CharacterPage = () => {
 }
 
 export default CharacterPage
+
+const BackgroundContainer = styled.div`
+  width: 80%;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+  p {
+    font-size: 20px;
+  }
+`
+
+const EditCharacterBtn = styled.button`
+background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  img {
+    :hover {
+      transform: scale(1.09);
+    }
+    :active {
+      transform: scale(1);
+    }
+  }
+`
 
 const PageContainer = styled.div`
   display: flex;

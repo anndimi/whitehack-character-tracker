@@ -105,7 +105,7 @@ const EditCharacterModal = (props) => {
       .then(() => console.log(editCharacter))
 
     props.onClose()
-    // window.location.reload()
+    window.location.reload()
   }
 
   if (!props.showModal) {
@@ -313,6 +313,9 @@ const ModalHeader = styled.div`
 const CloseButton = styled.button`
     width: 50px !important;
     margin: 0 !important;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
     img {
       width: 30px;
       vertical-align: middle;
@@ -377,6 +380,12 @@ const ModalButtonWrapper = styled.div`
   align-self: center;
   padding: 20px 15px 20px 15px;
   margin-top: 10px;
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
   img {
     :hover {
       transform: scale(1.09);

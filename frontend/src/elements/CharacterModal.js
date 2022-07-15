@@ -127,7 +127,10 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
               <label htmlFor="vocation">Vocation </label>
               <input type="text" name="vocation" required></input>
             </div>
-            <h4>Attributes</h4>
+            <ScoreGroupsContainer>
+              <h4>Attributes</h4>
+              <h4>Groups</h4>
+            </ScoreGroupsContainer>
             <AttributesContainer>
               <label htmlFor="str">
                 Str
@@ -185,6 +188,11 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
 }
 
 export default CharacterModal
+
+const ScoreGroupsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const AttributesContainer = styled.div`
   display: flex;
