@@ -9,6 +9,8 @@ import { Divider } from '../styles/global'
 import EditCharacterModal from '../elements/EditCharacterModal'
 import divider from '../assets/images/divider.png'
 import quilIcon from '../assets/icons/quil-icon.png'
+import skullIcon from '../assets/icons/skull-icon.png'
+import { PageContainer } from '../styles/global'
 
 const CharacterPage = () => {
   const [character, setCharacter] = useState({})
@@ -48,20 +50,14 @@ const CharacterPage = () => {
         <PageContainer>
           <Navbar />
           <PageWrapper>
-            <h1 style={{ textAlign: 'center' }}>{character.name}</h1>
-            <h1>{character.experiencePoints} XP</h1>
-            <EditCharacterBtn type="submit" onClick={() => setShowModal(true)}>
-              <img src={quilIcon} alt="add hero" />
-            </EditCharacterBtn>
-            <button
-              onClick={() => {
-                handleCharDeath()
-                navigate(`/campaigns/${name}/graveyard`)
-              }}
-              type="submit"
-            >
-              DIE!
-            </button>
+            <h1 style={{ textAlign: 'center' }}>
+              {character.name}, {character.experiencePoints} XP
+            </h1>
+
+            <CharacterBtn type="submit" onClick={() => setShowModal(true)}>
+              <img src={quilIcon} alt="edit hero" />
+            </CharacterBtn>
+
             <EditCharacterModal
               onClose={() => setShowModal(false)}
               showModal={showModal}
@@ -97,7 +93,7 @@ const CharacterPage = () => {
                 </ClassWrapper>
 
                 <AttributesContainer>
-                  <h1> Attributes</h1>
+                  <h1>Attributes</h1>
                   <ul>
                     <li>Strength: {character.attributes.str.score}</li>
                     <li>Dexterity: {character.attributes.dex.score}</li>
@@ -105,6 +101,17 @@ const CharacterPage = () => {
                     <li>Intelligence: {character.attributes.int.score}</li>
                     <li>Wisdom: {character.attributes.wis.score}</li>
                     <li>Charisma: {character.attributes.cha.score}</li>
+                  </ul>
+                </AttributesContainer>
+                <AttributesContainer>
+                  <h1>Groups</h1>
+                  <ul>
+                    <li>Strength: {character.attributes.str.groups}</li>
+                    <li>Dexterity: {character.attributes.dex.groups}</li>
+                    <li>Constitution: {character.attributes.con.groups}</li>
+                    <li>Intelligence: {character.attributes.int.groups}</li>
+                    <li>Wisdom: {character.attributes.wis.groups}</li>
+                    <li>Charisma: {character.attributes.cha.groups}</li>
                   </ul>
                 </AttributesContainer>
               </CharacterContainer>
@@ -115,6 +122,16 @@ const CharacterPage = () => {
               <p>{character.background}</p>
             </BackgroundContainer>
             <Divider src={divider} alt="divider" />
+            <CharacterBtn
+              onClick={() => {
+                handleCharDeath()
+                navigate(`/campaigns/${name}/graveyard`)
+                alert('Are you sure?')
+              }}
+              type="submit"
+            >
+              <img src={skullIcon} alt="kill hero" />
+            </CharacterBtn>
           </PageWrapper>
         </PageContainer>
       )}
@@ -135,10 +152,10 @@ const BackgroundContainer = styled.div`
   }
 `
 
-const EditCharacterBtn = styled.button`
+const CharacterBtn = styled.button`
 background: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
+border: 1px solid transparent;
+cursor: pointer;
   }
   img {
     :hover {
@@ -148,15 +165,6 @@ background: transparent;
       transform: scale(1);
     }
   }
-`
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-  width: 80%;
-  max-width: 1000px;
 `
 
 const PageWrapper = styled.div`

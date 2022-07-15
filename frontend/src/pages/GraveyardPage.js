@@ -73,7 +73,7 @@ const PageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
-  width: 80%;
+  width: 100%;
   max-width: 1000px;
   margin-bottom: 100px;
   text-align: center;

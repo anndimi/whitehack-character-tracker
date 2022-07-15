@@ -7,6 +7,7 @@ import { Divider } from '../styles/global'
 import quilIcon from '../assets/icons/quil-icon.png'
 import sealImg from '../assets/images/seal-img.png'
 import StoryEntryModal from '../elements/StoryEntryModal'
+import { PageContainer } from '../styles/global'
 
 const CampaignPage = () => {
   const [showModal, setShowModal] = useState(false)
@@ -92,20 +93,6 @@ const JournalsContainer = styled.div`
   }
 `
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  width: 80%;
-  max-width: 1000px;
-  h1 {
-    margin-top: 30px;
-    margin-bottom: 0;
-    text-align: center;
-  }
-`
 const CampaignWrapper = styled.div`
   display: flex;
   flex-direction: column;
