@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from '../elements/Navbar'
 import wiseIcon from '../assets/icons/wise-icon.png'
@@ -14,7 +14,24 @@ const CharacterPage = () => {
   const [character, setCharacter] = useState({})
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
-  const { id } = useParams()
+  const [characterIsDead, setCharacterIsDead] = useState(false)
+  const { id, name } = useParams()
+  const navigate = useNavigate()
+
+  const handleCharDeath = () => {
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isDead: true }),
+    }
+
+    fetch(`http://localhost:8080/characters/${id}`, options)
+      .then((res) => res.json())
+      .then((data) => setCharacterIsDead(data.isDead))
+      .then(() => console.log(characterIsDead))
+  }
 
   useEffect(() => {
     fetch(`http://localhost:8080/characters/${id}`)
@@ -36,6 +53,15 @@ const CharacterPage = () => {
             <EditCharacterBtn type="submit" onClick={() => setShowModal(true)}>
               <img src={quilIcon} alt="add hero" />
             </EditCharacterBtn>
+            <button
+              onClick={() => {
+                handleCharDeath()
+                navigate(`/campaigns/${name}/graveyard`)
+              }}
+              type="submit"
+            >
+              DIE!
+            </button>
             <EditCharacterModal
               onClose={() => setShowModal(false)}
               showModal={showModal}

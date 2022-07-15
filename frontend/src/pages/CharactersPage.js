@@ -23,6 +23,10 @@ const CharactersPage = () => {
       .then(() => console.log(characters))
   }, [name])
 
+  const filteredCharacters = characters.filter(
+    (character) => character.isDead === false
+  )
+
   return (
     <PageContainer>
       <Navbar />
@@ -38,7 +42,7 @@ const CharactersPage = () => {
         />
         <CharactersWrapper>
           <Divider src={divider} alt="divider" />
-          {characters.map((character) => (
+          {filteredCharacters.map((character) => (
             <SingleCharacterContainer key={character.id}>
               <Link
                 to={`/campaigns/${name}/characters/${character.id}`}
@@ -57,6 +61,7 @@ const CharactersPage = () => {
               </Link>
             </SingleCharacterContainer>
           ))}
+
           <Divider src={divider} alt="divider" />
         </CharactersWrapper>
       </PageWrapper>

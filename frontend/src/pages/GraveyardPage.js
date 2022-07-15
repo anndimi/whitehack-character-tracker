@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { PageContainer } from '../styles/global'
 import gravestone1 from '../assets/images/gravestone1.png'
@@ -11,7 +12,30 @@ import cross from '../assets/images/cross.png'
 import { Divider } from '../styles/global'
 import Navbar from '../elements/Navbar'
 
+const gravestoneImgs = [
+  gravestone1,
+  gravestone2,
+  gravestone3,
+  gravestone4,
+  gravestone5,
+]
+
 const GraveyardPage = () => {
+  const [characters, setCharacters] = useState([])
+
+  const { name } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/campaigns/${name}/characters`)
+      .then((res) => res.json())
+      .then((data) => setCharacters(data))
+      .then(() => console.log(characters))
+  }, [name])
+
+  const filteredCharacters = characters.filter(
+    (character) => character.isDead === true
+  )
+
   return (
     <PageContainer>
       <Navbar />
@@ -21,30 +45,19 @@ const GraveyardPage = () => {
         <h3>tua facta memorabuntur</h3>
         <Divider src={divider} alt="divider" />
         <GraveyardContainer>
-          <GravestoneContainer>
-            <img src={gravestone1} />
-            <h3>Morwen</h3>
-          </GravestoneContainer>
-          <GravestoneContainer>
-            <img src={gravestone2} />
-            <h3>Noob</h3>
-          </GravestoneContainer>
-          <GravestoneContainer>
-            <img src={gravestone3} />
-            <h3>Sazarioth</h3>
-          </GravestoneContainer>
-          <GravestoneContainer>
-            <img src={gravestone4} />
-            <h3>Macha</h3>
-          </GravestoneContainer>
-          <GravestoneContainer>
-            <img src={gravestone5} />
-            <h3>Bromir</h3>
-          </GravestoneContainer>
-          <GravestoneContainer>
-            <img src={gravestone2} />
-            <h3>Doge Tinyshoe</h3>
-          </GravestoneContainer>
+          {filteredCharacters.map((character) => (
+            <GravestoneContainer key={character.id}>
+              <img
+                src={
+                  gravestoneImgs[
+                    Math.floor(Math.random() * gravestoneImgs.length)
+                  ]
+                }
+                alt="gravestone"
+              />
+              <h3>{character.name}</h3>
+            </GravestoneContainer>
+          ))}
         </GraveyardContainer>
         <Divider src={divider} alt="divider" />
       </PageWrapper>

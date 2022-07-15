@@ -11,6 +11,10 @@ const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
     body: '',
   })
 
+  const filteredCharacters = characters.filter(
+    (character) => character.isDead === false
+  )
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
     console.log(e)
@@ -58,7 +62,7 @@ const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
             <SignatureSelect>
               <label htmlFor="signature">Signed </label>
               <select name="signature" required>
-                {characters.map((character) => (
+                {filteredCharacters.map((character) => (
                   <option value={character.name} key={character.id}>
                     {character.name}
                   </option>
