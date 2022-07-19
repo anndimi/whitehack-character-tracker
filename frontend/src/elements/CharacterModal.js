@@ -223,10 +223,11 @@ const ModalContainer = styled.div`
 
 const ModalWrapper = styled.div`
   width: 500px;
-  height: fit-content;
+  height: 90%;
   background-color: rgb(221, 208, 193);
   border-radius: 2px;
   z-index: 9999;
+  overflow: scroll;
 `
 
 const ModalHeader = styled.div`

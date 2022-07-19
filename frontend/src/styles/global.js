@@ -6,7 +6,6 @@ export const PageTitle = styled.h1`
 `
 
 export const PageContainer = styled.div`
-  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +13,7 @@ export const PageContainer = styled.div`
   margin: auto;
   width: 80%;
   max-width: 1000px;
+  padding-bottom: 50px;
   h1 {
     margin-top: 30px;
     text-align: center;
