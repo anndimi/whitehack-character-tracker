@@ -9,7 +9,7 @@ app.use(express.json())
 
 const corsOptions = {
   origin:
-    'http://localhost:3000' || 'https://whitehackcharactertracker.netlify.app',
+    'http://localhost:3000' || 'https://whitehackcharactertracker.netlify.app/',
   optionsSuccessStatus: 200,
 }
 
