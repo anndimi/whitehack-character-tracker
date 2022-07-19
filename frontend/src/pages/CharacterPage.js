@@ -57,6 +57,7 @@ const CharacterPage = () => {
             <CharacterBtn type="submit" onClick={() => setShowModal(true)}>
               <img src={quilIcon} alt="edit hero" />
             </CharacterBtn>
+            <span>Edit Hero</span>
 
             <EditCharacterModal
               onClose={() => setShowModal(false)}
@@ -149,6 +150,7 @@ const BackgroundContainer = styled.div`
   }
   p {
     font-size: 20px;
+    white-space: pre-line;
   }
 `
 

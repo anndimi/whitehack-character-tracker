@@ -94,7 +94,10 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
   }
 
   if (!showModal) {
+    document.body.style.overflow = 'visible'
     return null
+  } else {
+    document.body.style.overflow = 'hidden'
   }
 
   return (
@@ -227,7 +230,7 @@ const ModalWrapper = styled.div`
   background-color: rgb(221, 208, 193);
   border-radius: 2px;
   z-index: 9999;
-  overflow: scroll;
+  overflow-y: scroll;
 `
 
 const ModalHeader = styled.div`

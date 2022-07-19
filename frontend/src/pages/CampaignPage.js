@@ -83,6 +83,7 @@ const JournalsContainer = styled.div`
   p {
     font-size: 20px;
     width: 80%;
+    white-space: pre-line;
   }
   h4 {
     margin: 0;

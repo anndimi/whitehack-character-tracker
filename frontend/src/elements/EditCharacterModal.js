@@ -109,7 +109,10 @@ const EditCharacterModal = (props) => {
   }
 
   if (!props.showModal) {
+    document.body.style.overflow = 'visible'
     return null
+  } else {
+    document.body.style.overflow = 'hidden'
   }
 
   return (
@@ -294,7 +297,7 @@ const ModalContainer = styled.div`
 const ModalWrapper = styled.div`
   width: 500px;
   height: 90%;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: rgb(221, 208, 193);
   border-radius: 2px;
   z-index: 9999;
