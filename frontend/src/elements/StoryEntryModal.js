@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import crossIcon from '../assets/icons/cross-icon.png'
 import closeIcon from '../assets/icons/close-icon.png'

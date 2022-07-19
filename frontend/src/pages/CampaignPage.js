@@ -42,7 +42,7 @@ const CampaignPage = () => {
       <PageContainer>
         <h1>{name}</h1>
         <AddEntryButton onClick={() => setShowModal(true)}>
-          <img src={quilIcon} />
+          <img src={quilIcon} alt="add campaign entry" />
         </AddEntryButton>
         New Entry
         <StoryEntryModal

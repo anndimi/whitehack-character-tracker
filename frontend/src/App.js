@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import CampaignPage from './pages/CampaignPage'
 import CharactersPage from './pages/CharactersPage'
@@ -9,7 +9,6 @@ import ErrorPage from './pages/ErrorPage'
 import styled from 'styled-components'
 import HeroImg from './elements/HeroImg'
 import ScrollToTopButton from './elements/ScrollToTopBtn'
-import Navbar from './elements/Navbar'
 
 function App() {
   return (
