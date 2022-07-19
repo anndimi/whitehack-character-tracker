@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js --exec babel-node",
     "sync": "node ./database/sync.js",
-    "start": "babel-node server.js",
+    "start": "node server.js",
     "test": "mocha -j 1"
   },
   "author": "",

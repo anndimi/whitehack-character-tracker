@@ -6,6 +6,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 app.use(express.json())
+const PORT = process.env.PORT || 8080
 
 const corsOptions = {
   origin: [
@@ -206,6 +207,6 @@ app.delete('/journals/:id', async (req, res) => {
   )
 })
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
