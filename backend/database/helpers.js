@@ -2,7 +2,7 @@ const { sequelize, Campaign, Character, Level, Journal } = require('./models')
 
 const dropAndSync = async () => {
   await sequelize
-    .query('PRAGMA foreign_keys = OFF')
+    .query('SET FOREIGN_KEY_CHECKS = 0')
     .then((result) => {
       return sequelize.getQueryInterface().dropAllTables()
     })
@@ -19,7 +19,7 @@ const dropAndSync = async () => {
       return Journal.sync({ force: true })
     })
     .then((result) => {
-      return sequelize.query('PRAGMA foreign_keys = ON')
+      return sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
     })
 }
 

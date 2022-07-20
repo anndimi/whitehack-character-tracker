@@ -11,6 +11,7 @@ import divider from '../assets/images/divider.png'
 import quilIcon from '../assets/icons/quil-icon.png'
 import skullIcon from '../assets/icons/skull-icon.png'
 import { PageContainer } from '../styles/global'
+import Swal from 'sweetalert2'
 
 const CharacterPage = () => {
   const [character, setCharacter] = useState({})
@@ -32,7 +33,7 @@ const CharacterPage = () => {
     fetch(`http://localhost:8080/characters/${id}`, options)
       .then((res) => res.json())
       .then((data) => setCharacterIsDead(data.isDead))
-      .then(() => console.log(characterIsDead))
+      .then(() => navigate(`/campaigns/${name}/graveyard`))
   }
 
   useEffect(() => {
@@ -125,14 +126,26 @@ const CharacterPage = () => {
             <Divider src={divider} alt="divider" />
             <CharacterBtn
               onClick={() => {
-                handleCharDeath()
-                navigate(`/campaigns/${name}/graveyard`)
-                alert('Are you sure?')
+                Swal.fire({
+                  iconHtml: '<img src="https://i.imgur.com/U3URwky.png">',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, they are dead..',
+                  confirmButtonColor: '#393939',
+                  cancelButtonText: 'No!',
+                  title: 'Is your hero truly dead?',
+                  color: '#393939',
+                  background: 'rgb(221, 208, 193)',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    handleCharDeath()
+                  }
+                })
               }}
               type="submit"
             >
               <img src={skullIcon} alt="kill hero" />
             </CharacterBtn>
+            <span>Kill Hero</span>
           </PageWrapper>
         </PageContainer>
       )}

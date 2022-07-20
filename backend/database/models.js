@@ -1,10 +1,22 @@
 const { Sequelize, DataTypes, Model, Op } = require('sequelize')
+require('dotenv').config()
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  logging: false,
-  storage: './database/database.sqlite',
-})
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    dialect: 'mysql',
+    host: 'localhost',
+  }
+)
+
+try {
+  sequelize.authenticate()
+  console.log('Connection has been established successfully.')
+} catch (error) {
+  console.error('Unable to connect to the database:', error)
+}
 
 const arraysAreEqual = (arr1, arr2) => {
   if (
