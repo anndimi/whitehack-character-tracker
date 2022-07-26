@@ -85,10 +85,10 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
           },
           cha: {
             score: e.target[17].value,
-            groups: [e.target[19].value],
+            groups: [e.target[18].value],
           },
         },
-        background: e.target[20].value,
+        background: e.target[19].value,
       }),
     }
 
@@ -104,9 +104,8 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
   if (!showModal) {
     document.body.style.overflow = 'visible'
     return null
-  } else {
-    document.body.style.overflow = 'hidden'
   }
+  document.body.style.overflow = 'hidden'
 
   return (
     <ModalContainer onClick={onClose}>
@@ -129,14 +128,14 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
               <input type="text" name="species" required></input>
             </div>
 
-            <div>
+            <ClassWrapper>
               <fieldset>
                 <legend>Class</legend>
                 <ClassContainer>
                   <label htmlFor="strong">Strong</label>
                   <input
                     type="radio"
-                    name="class className"
+                    name="class"
                     id="strong"
                     value="Strong"
                     required
@@ -145,7 +144,7 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
                   <label htmlFor="deft">Deft</label>
                   <input
                     type="radio"
-                    name="class className"
+                    name="class"
                     id="deft"
                     value="Deft"
                     required
@@ -154,14 +153,14 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
                   <label htmlFor="wise">Wise</label>
                   <input
                     type="radio"
-                    name="class className"
+                    name="class"
                     id="wise"
                     value="Wise"
                     required
                   />
                 </ClassContainer>
               </fieldset>
-            </div>
+            </ClassWrapper>
 
             <div>
               <label htmlFor="vocation">Vocation </label>
@@ -229,9 +228,24 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
 
 export default CharacterModal
 
+const ClassWrapper = styled.div`
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+`
+
 const ClassContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  padding: 20px 5px;
+  input[type='radio'] {
+    margin: 0;
+    height: 20px;
+    width: 20px;
+  }
 `
 
 const ScoreGroupsContainer = styled.div`
@@ -287,17 +301,16 @@ const ModalHeader = styled.div`
 `
 
 const CloseButton = styled.button`
-    width: 50px !important;
-    margin: 0 !important;
-    img {
-      width: 30px;
-      vertical-align: middle;
-      :hover {
-        transform: scale(1.09);
-      }
-      :active {
-        transform: scale(1);
-      }
+  width: 50px !important;
+  margin: 0 !important;
+  img {
+    width: 30px;
+    vertical-align: middle;
+    :hover {
+      transform: scale(1.09);
+    }
+    :active {
+      transform: scale(1);
     }
   }
 `
@@ -315,20 +328,26 @@ const Form = styled.form`
   margin: auto;
   gap: 12px;
   font-size: 18px;
-  input {
+  input[type='text'] {
     width: 100%;
     height: 28px;
     font-size: 20px;
-    border: 1px solid transparent;
-    border-bottom: 1px dotted black;
+    border: 1px solid rgb(221, 208, 193);
+    border-bottom: 1px dotted #393939;
     background-color: transparent;
     font-family: inherit;
     color: #393939;
     :focus {
-      border: 1px solid transparent;
+      border: 1px solid rgb(221, 208, 193);
       outline-offset: 0px !important;
       outline: none !important;
-      border-bottom: 1px dotted black;
+      border-bottom: 1px dotted #393939;
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgb(221, 208, 193) inset !important;
     }
   }
   textarea {
@@ -345,6 +364,7 @@ const Form = styled.form`
       outline-offset: 0px !important;
       outline: none !important;
     }
+  }
 `
 
 const ModalButtonWrapper = styled.div`
@@ -352,7 +372,6 @@ const ModalButtonWrapper = styled.div`
   width: 100%;
   align-self: center;
   padding: 20px 15px 20px 15px;
-  margin-top: 10px;
   img {
     :hover {
       transform: scale(1.09);

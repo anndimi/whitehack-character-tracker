@@ -59,6 +59,14 @@ const EditCharacterModal = (props) => {
     e.preventDefault()
     console.log(e)
 
+    let selectedClassIndex
+
+    for (let i = 3; i < 6; i++) {
+      if (e.target[i].checked) {
+        selectedClassIndex = i
+      }
+    }
+
     const options = {
       method: 'PATCH',
       headers: {
@@ -67,35 +75,35 @@ const EditCharacterModal = (props) => {
       body: JSON.stringify({
         name: e.target[0].value,
         species: e.target[1].value,
-        class: e.target[2].value,
-        vocation: e.target[3].value,
+        class: e.target[selectedClassIndex].value,
+        vocation: e.target[6].value,
         attributes: {
           str: {
-            score: e.target[4].value,
-            groups: [e.target[5].value],
+            score: e.target[7].value,
+            groups: [e.target[8].value],
           },
           dex: {
-            score: e.target[6].value,
-            groups: [e.target[7].value],
+            score: e.target[9].value,
+            groups: [e.target[10].value],
           },
           con: {
-            score: e.target[8].value,
-            groups: [e.target[9].value],
+            score: e.target[11].value,
+            groups: [e.target[12].value],
           },
           int: {
-            score: e.target[10].value,
-            groups: [e.target[11].value],
+            score: e.target[13].value,
+            groups: [e.target[14].value],
           },
           wis: {
-            score: e.target[12].value,
-            groups: [e.target[13].value],
+            score: e.target[15].value,
+            groups: [e.target[16].value],
           },
           cha: {
-            score: e.target[14].value,
-            groups: [e.target[15].value],
+            score: e.target[17].value,
+            groups: [e.target[18].value],
           },
         },
-        background: e.target[16].value,
+        background: e.target[19].value,
       }),
     }
 
@@ -105,15 +113,14 @@ const EditCharacterModal = (props) => {
       .then(() => console.log(editCharacter))
 
     props.onClose()
-    window.location.reload()
+    // window.location.reload()
   }
 
   if (!props.showModal) {
     document.body.style.overflow = 'visible'
     return null
-  } else {
-    document.body.style.overflow = 'hidden'
   }
+  document.body.style.overflow = 'hidden'
 
   return (
     <ModalContainer onClick={props.onClose}>
@@ -146,15 +153,42 @@ const EditCharacterModal = (props) => {
               ></input>
             </div>
 
-            <div>
-              <label htmlFor="class">Class </label>
-              <input
-                type="text"
-                name="class"
-                value={editCharacter.class}
-                onChange={handleChange}
-              ></input>
-            </div>
+            <ClassWrapper>
+              <fieldset>
+                <legend>Class</legend>
+                <ClassContainer>
+                  <label htmlFor="strong">Strong</label>
+                  <input
+                    type="radio"
+                    name="class"
+                    id="strong"
+                    value="Strong"
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="deft">Deft</label>
+                  <input
+                    type="radio"
+                    name="class"
+                    id="deft"
+                    value="Deft"
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="wise">Wise</label>
+                  <input
+                    type="radio"
+                    name="class"
+                    id="wise"
+                    value="Wise"
+                    onChange={handleChange}
+                    required
+                  />
+                </ClassContainer>
+              </fieldset>
+            </ClassWrapper>
 
             <div>
               <label htmlFor="vocation">Vocation </label>
@@ -262,6 +296,26 @@ const EditCharacterModal = (props) => {
 
 export default EditCharacterModal
 
+const ClassWrapper = styled.div`
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const ClassContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 5px;
+  input[type='radio'] {
+    margin: 0;
+    height: 20px;
+    width: 20px;
+  }
+`
+
 const ScoreGroupsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -315,20 +369,19 @@ const ModalHeader = styled.div`
 `
 
 const CloseButton = styled.button`
-    width: 50px !important;
-    margin: 0 !important;
-    background: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    img {
-      width: 30px;
-      vertical-align: middle;
-      :hover {
-        transform: scale(1.09);
-      }
-      :active {
-        transform: scale(1);
-      }
+  width: 50px !important;
+  margin: 0 !important;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  img {
+    width: 30px;
+    vertical-align: middle;
+    :hover {
+      transform: scale(1.09);
+    }
+    :active {
+      transform: scale(1);
     }
   }
 `
@@ -346,20 +399,26 @@ const Form = styled.form`
   margin: auto;
   gap: 12px;
   font-size: 18px;
-  input {
+  input[type='text'] {
     width: 100%;
     height: 28px;
     font-size: 20px;
-    border: 1px solid transparent;
-    border-bottom: 1px dotted black;
+    border: 1px solid rgb(221, 208, 193);
+    border-bottom: 1px dotted #393939;
     background-color: transparent;
     font-family: inherit;
     color: #393939;
     :focus {
-      border: 1px solid transparent;
+      border: 1px solid rgb(221, 208, 193);
       outline-offset: 0px !important;
       outline: none !important;
-      border-bottom: 1px dotted black;
+      border-bottom: 1px dotted #393939;
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgb(221, 208, 193) inset !important;
     }
   }
   textarea {
@@ -376,6 +435,7 @@ const Form = styled.form`
       outline-offset: 0px !important;
       outline: none !important;
     }
+  }
 `
 
 const ModalButtonWrapper = styled.div`

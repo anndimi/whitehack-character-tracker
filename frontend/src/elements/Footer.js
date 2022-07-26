@@ -22,10 +22,6 @@ const Footer = () => {
 export default Footer
 
 const FooterContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  right: 0;
   a {
     color: #393939;
     text-decoration: none;
