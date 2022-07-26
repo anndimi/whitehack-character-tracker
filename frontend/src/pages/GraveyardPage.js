@@ -41,8 +41,8 @@ const GraveyardPage = () => {
       <Navbar />
       <PageWrapper>
         <h1>Requiescat in pace, heroum..</h1>
-        <CrossImg src={cross} />
-        <h3>tua facta memorabuntur</h3>
+        {/* <CrossImg src={cross} /> */}
+        <h3>..tua facta memorabuntur</h3>
         <Divider src={divider} alt="divider" />
         <GraveyardContainer>
           {filteredCharacters.map((character) => (

@@ -43,6 +43,14 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
     e.preventDefault()
     console.log(e)
 
+    let selectedClassIndex
+
+    for (let i = 3; i < 6; i++) {
+      if (e.target[i].checked) {
+        selectedClassIndex = i
+      }
+    }
+
     const options = {
       method: 'POST',
       headers: {
@@ -52,35 +60,35 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
         campaignName: campaignName,
         name: e.target[0].value,
         species: e.target[1].value,
-        class: e.target[2].value,
-        vocation: e.target[3].value,
+        class: e.target[selectedClassIndex].value,
+        vocation: e.target[6].value,
         attributes: {
           str: {
-            score: e.target[4].value,
-            groups: [e.target[5].value],
+            score: e.target[7].value,
+            groups: [e.target[8].value],
           },
           dex: {
-            score: e.target[6].value,
-            groups: [e.target[7].value],
+            score: e.target[9].value,
+            groups: [e.target[10].value],
           },
           con: {
-            score: e.target[8].value,
-            groups: [e.target[9].value],
+            score: e.target[11].value,
+            groups: [e.target[12].value],
           },
           int: {
-            score: e.target[10].value,
-            groups: [e.target[11].value],
+            score: e.target[13].value,
+            groups: [e.target[14].value],
           },
           wis: {
-            score: e.target[12].value,
-            groups: [e.target[13].value],
+            score: e.target[15].value,
+            groups: [e.target[16].value],
           },
           cha: {
-            score: e.target[14].value,
-            groups: [e.target[15].value],
+            score: e.target[17].value,
+            groups: [e.target[19].value],
           },
         },
-        background: e.target[16].value,
+        background: e.target[20].value,
       }),
     }
 
@@ -122,8 +130,37 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
             </div>
 
             <div>
-              <label htmlFor="class">Class </label>
-              <input type="text" name="class" required></input>
+              <fieldset>
+                <legend>Class</legend>
+                <ClassContainer>
+                  <label htmlFor="strong">Strong</label>
+                  <input
+                    type="radio"
+                    name="class className"
+                    id="strong"
+                    value="Strong"
+                    required
+                  />
+
+                  <label htmlFor="deft">Deft</label>
+                  <input
+                    type="radio"
+                    name="class className"
+                    id="deft"
+                    value="Deft"
+                    required
+                  />
+
+                  <label htmlFor="wise">Wise</label>
+                  <input
+                    type="radio"
+                    name="class className"
+                    id="wise"
+                    value="Wise"
+                    required
+                  />
+                </ClassContainer>
+              </fieldset>
             </div>
 
             <div>
@@ -191,6 +228,11 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
 }
 
 export default CharacterModal
+
+const ClassContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 const ScoreGroupsContainer = styled.div`
   display: flex;

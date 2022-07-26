@@ -16,6 +16,7 @@ export const PageContainer = styled.div`
   padding-bottom: 50px;
   h1 {
     margin-top: 30px;
+    margin-bottom: 0;
     text-align: center;
   }
 `

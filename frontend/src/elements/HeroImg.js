@@ -241,6 +241,7 @@ const Form = styled.form`
     width: 70%;
     max-width: 180px;
     font-family: inherit;
+    font-size: 18px;
     border: 1px solid transparent;
     background-color: rgb(221, 208, 193);
     border-radius: 2px;
