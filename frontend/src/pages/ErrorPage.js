@@ -62,9 +62,9 @@ const LogoContainer = styled.div`
   img {
     width: 100%;
     max-width: 200px;
-    animation-name: ${rotate};
+    /* animation-name: ${rotate};
     animation-duration: 35s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-timing-function: linear; */
   }
 `

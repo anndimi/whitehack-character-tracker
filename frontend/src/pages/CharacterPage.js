@@ -43,6 +43,8 @@ const CharacterPage = () => {
       .finally(() => setLoading(false))
   }, [id])
 
+  console.log(character)
+
   return (
     <>
       {JSON.stringify(character) === JSON.stringify({}) ? (
