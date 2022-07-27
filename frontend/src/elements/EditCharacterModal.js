@@ -39,6 +39,7 @@ const EditCharacterModal = (props) => {
       },
     },
     background: props.background,
+    experiencePoints: props.experiencePoints,
   })
 
   const handleChange = (e) => {
@@ -104,6 +105,7 @@ const EditCharacterModal = (props) => {
           },
         },
         background: e.target[19].value,
+        experiencePoints: e.target[20].value,
       }),
     }
 
@@ -113,7 +115,7 @@ const EditCharacterModal = (props) => {
       .then(() => console.log(editCharacter))
 
     props.onClose()
-    // window.location.reload()
+    window.location.reload()
   }
 
   if (!props.showModal) {
@@ -282,6 +284,18 @@ const EditCharacterModal = (props) => {
               ></textarea>
             </div>
 
+            <div>
+              <h4>Experience Points</h4>
+              <label htmlFor="experiencePoints"></label>
+              <input
+                type="number"
+                min="0"
+                name="experiencePoints"
+                value={editCharacter.experiencePoints}
+                onChange={handleChange}
+              />
+            </div>
+
             <ModalButtonWrapper>
               <button type="submit">
                 <img src={crossIcon} alt="add hero" />
@@ -399,7 +413,7 @@ const Form = styled.form`
   margin: auto;
   gap: 12px;
   font-size: 18px;
-  input[type='text'] {
+  input {
     width: 100%;
     height: 28px;
     font-size: 20px;
@@ -419,6 +433,11 @@ const Form = styled.form`
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
       -webkit-box-shadow: 0 0 0 30px rgb(221, 208, 193) inset !important;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
   textarea {

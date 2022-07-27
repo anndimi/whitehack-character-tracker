@@ -7,6 +7,7 @@ import homeBg from '../assets/images/homebg.jpg'
 import graveyardBg from '../assets/images/graveyardbg.jpg'
 import heroBg from '../assets/images/herobg.jpg'
 import logo from '../assets/images/logo.png'
+import Footer from './Footer'
 
 const HeroImg = () => {
   let location = useLocation()
@@ -81,6 +82,7 @@ const HeroImg = () => {
               </Form>
             </FormsContainer>
           </HomePageContainer>
+          <Footer />
         </HeroTitle>
       </HeroImgContainer>
     )

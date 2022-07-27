@@ -7,12 +7,14 @@ const Navbar = () => {
   let location = useLocation()
   const { name } = useParams()
 
+  console.log(location.pathname)
+
   return (
     <NavbarContainer>
       <NavbarWrapper>
         <Link to="/">
           <LogoContainer>
-            <img src={logo} />
+            <img src={logo} alt="Whitehack Character Tracker Home" />
           </LogoContainer>
         </Link>
 

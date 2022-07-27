@@ -41,7 +41,6 @@ const createCharacter = async function (data) {
     experiencePoints: data.experiencePoints,
     attributes: data.attributes,
     background: data.background,
-    level: data.level,
   })
 }
 

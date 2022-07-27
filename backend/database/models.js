@@ -95,11 +95,12 @@ Character.init(
     level: {
       type: DataTypes.INTEGER,
       async get() {
-        return await this.getLevelEntry().then((response) => {
-          return response.getDataValue('level')
-        })
+        const levelValue = await this.getLevelEntry('level')
+
+        return levelValue.level
       },
     },
+
     attributes: {
       type: DataTypes.JSON,
       allowNull: false,

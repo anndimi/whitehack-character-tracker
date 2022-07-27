@@ -20,7 +20,6 @@ const CharactersPage = () => {
     fetch(`http://localhost:8080/campaigns/${name}/characters`)
       .then((res) => res.json())
       .then((data) => setCharacters(data))
-      .then(() => console.log(characters))
   }, [name])
 
   const filteredCharacters = characters.filter(

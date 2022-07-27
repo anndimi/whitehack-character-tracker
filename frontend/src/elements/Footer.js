@@ -22,8 +22,9 @@ const Footer = () => {
 export default Footer
 
 const FooterContainer = styled.div`
+  margin-top: 50px;
   a {
-    color: #393939;
+    color: rgb(221, 208, 193);
     text-decoration: none;
     letter-spacing: 0.5px;
     :hover {

@@ -9,7 +9,6 @@ import ErrorPage from './pages/ErrorPage'
 import styled from 'styled-components'
 import HeroImg from './elements/HeroImg'
 import ScrollToTopButton from './elements/ScrollToTopBtn'
-import Footer from './elements/Footer'
 
 function App() {
   return (
@@ -36,7 +35,6 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ScrollToTopButton />
-      <Footer />
     </AppContainer>
   )
 }

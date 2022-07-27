@@ -43,7 +43,7 @@ const CharacterPage = () => {
       .finally(() => setLoading(false))
   }, [id])
 
-  console.log(character)
+  console.log('level', character.level)
 
   return (
     <>
@@ -76,6 +76,7 @@ const CharacterPage = () => {
               wis={character.attributes.wis.score}
               cha={character.attributes.cha.score}
               background={character.background}
+              experiencePoints={character.experiencePoints}
             />
             <Divider src={divider} alt="divider" />
             <CharacterWrapper>
@@ -110,12 +111,12 @@ const CharacterPage = () => {
                 <AttributesContainer>
                   <h1>Groups</h1>
                   <ul>
-                    <li>Strength: {character.attributes.str.groups}</li>
-                    <li>Dexterity: {character.attributes.dex.groups}</li>
-                    <li>Constitution: {character.attributes.con.groups}</li>
-                    <li>Intelligence: {character.attributes.int.groups}</li>
-                    <li>Wisdom: {character.attributes.wis.groups}</li>
-                    <li>Charisma: {character.attributes.cha.groups}</li>
+                    <li>{character.attributes.str.groups}</li>
+                    <li>{character.attributes.dex.groups}</li>
+                    <li>{character.attributes.con.groups}</li>
+                    <li>{character.attributes.int.groups}</li>
+                    <li>{character.attributes.wis.groups}</li>
+                    <li>{character.attributes.cha.groups}</li>
                   </ul>
                 </AttributesContainer>
               </CharacterContainer>

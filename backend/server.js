@@ -48,6 +48,8 @@ const {
 app.get('/characters/:id', async (req, res) => {
   await getCharacter(req.params.id).then(
     (result) => {
+      //console.log('char', result)
+      console.log('char', result.level)
       res.send(result)
     },
     (reason) => {
@@ -70,10 +72,10 @@ app.get('/characters/:id/journals', async (req, res) => {
 app.post('/characters', async (req, res) => {
   await createCharacter(req.body).then(
     (result) => {
+      console.log('new char', result)
       res.send(result)
     },
     (reason) => {
-      console.log(reason)
       res.sendStatus(500)
     }
   )
@@ -82,7 +84,6 @@ app.post('/characters', async (req, res) => {
 app.patch('/characters/:id', async (req, res) => {
   await updateCharacter(req.params.id, req.body).then(
     (result) => {
-      console.log('bajs', result)
       return res.send(result)
     },
     (reason) => {
