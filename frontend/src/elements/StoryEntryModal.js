@@ -61,6 +61,7 @@ const StoryEntryModal = ({ onClose, showModal, campaignName, characters }) => {
             <SignatureSelect>
               <label htmlFor="signature">Signed </label>
               <select name="signature" required>
+                <option value="" selected="true" disabled></option>
                 {filteredCharacters.map((character) => (
                   <option value={character.name} key={character.id}>
                     {character.name}
@@ -202,6 +203,7 @@ const ModalButtonWrapper = styled.div`
 `
 
 const SignatureSelect = styled.div`
+  position: relative;
   font-size: 20px;
   select {
     cursor: pointer;
@@ -219,6 +221,12 @@ const SignatureSelect = styled.div`
       background-color: transparent;
     }
     option {
+      position: absolute;
+      background-color: rgb(221, 208, 193);
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99;
     }
   }
 `
