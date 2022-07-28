@@ -1,0 +1,10 @@
+{
+    "name": "whitehack-character-tracker",
+    "version": "0.1.0",
+    "scripts": {
+      "postinstall": "npm install --prefix backend"
+    },
+    "engines": {
+      "node": "18.x"
+    }
+  }
