@@ -100,7 +100,7 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
       .then(() => console.log(newCharacter))
 
     onClose()
-    // window.location.reload()
+    window.location.reload()
   }
 
   if (!showModal) {
@@ -134,32 +134,41 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
               <fieldset>
                 <legend>Class</legend>
                 <ClassContainer>
-                  <label htmlFor="strong">Strong</label>
-                  <input
-                    type="radio"
-                    name="class"
-                    id="strong"
-                    value="Strong"
-                    required
-                  />
+                  <label htmlFor="strong">
+                    Strong
+                    <input
+                      type="radio"
+                      name="class"
+                      id="strong"
+                      value="Strong"
+                      required
+                    />
+                    <span></span>
+                  </label>
 
-                  <label htmlFor="deft">Deft</label>
-                  <input
-                    type="radio"
-                    name="class"
-                    id="deft"
-                    value="Deft"
-                    required
-                  />
+                  <label htmlFor="deft">
+                    Deft
+                    <input
+                      type="radio"
+                      name="class"
+                      id="deft"
+                      value="Deft"
+                      required
+                    />
+                    <span></span>
+                  </label>
 
-                  <label htmlFor="wise">Wise</label>
-                  <input
-                    type="radio"
-                    name="class"
-                    id="wise"
-                    value="Wise"
-                    required
-                  />
+                  <label htmlFor="wise">
+                    Wise
+                    <input
+                      type="radio"
+                      name="class"
+                      id="wise"
+                      value="Wise"
+                      required
+                    />
+                    <span></span>
+                  </label>
                 </ClassContainer>
               </fieldset>
             </ClassWrapper>
@@ -246,13 +255,40 @@ const ClassWrapper = styled.div`
 
 const ClassContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-around;
   padding: 20px 5px;
+  label {
+    display: inline-flex;
+    align-items: center;
+  }
   input[type='radio'] {
-    margin: 0;
-    height: 20px;
-    width: 20px;
+    position: relative;
+    height: 25px;
+    width: 25px;
+    opacity: 0;
+    cursor: pointer;
+    &:checked ~ span:after {
+      display: block;
+    }
+  }
+  span {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    left: -20%;
+    cursor: pointer;
+    background-color: rgb(221, 208, 193);
+    border: 3px double #393939;
+    display: inline-block;
+    :after {
+      content: 'x';
+      position: relative;
+      font-family: 'Splash', cursive;
+      color: #393939;
+      font-size: 70px;
+      line-height: 5px;
+      display: none;
+    }
   }
 `
 

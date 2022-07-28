@@ -32,7 +32,7 @@ const CharactersPage = () => {
       <PageWrapper>
         <h1>Summon new hero</h1>
         <button type="submit" onClick={() => setShowModal(true)}>
-          <AddHeroButtonImg src={crossIcon} alt="add hero" />
+          <AddHeroButtonImg src={crossIcon} alt="add penis" />
         </button>
         <CharacterModal
           onClose={() => setShowModal(false)}
