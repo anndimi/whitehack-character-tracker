@@ -46,11 +46,13 @@ const {
  * ROUTES: CHARACTERS
  */
 app.get('/characters/:id', async (req, res) => {
+  const level = await getCharacter(req.params.id).then((result) => {
+    return result.level
+  })
+
   await getCharacter(req.params.id).then(
     (result) => {
-      //console.log('char', result)
-      console.log('char', result.level)
-      res.send(result)
+      res.send({ result, level })
     },
     (reason) => {
       res.sendStatus(500)

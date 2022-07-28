@@ -42,6 +42,7 @@ const CharacterPage = () => {
       .then((data) => setCharacter(data))
       .finally(() => setLoading(false))
   }, [id])
+  console.log(character)
 
   console.log('level', character.level)
 
@@ -54,7 +55,8 @@ const CharacterPage = () => {
           <Navbar />
           <PageWrapper>
             <h1 style={{ textAlign: 'center' }}>
-              {character.name}, {character.experiencePoints} XP
+              {character.result.name}, {character.result.experiencePoints} XP,
+              level {character.level}
             </h1>
 
             <CharacterBtn type="submit" onClick={() => setShowModal(true)}>
@@ -65,32 +67,32 @@ const CharacterPage = () => {
             <EditCharacterModal
               onClose={() => setShowModal(false)}
               showModal={showModal}
-              name={character.name}
-              species={character.species}
-              class={character.class}
-              vocation={character.vocation}
-              str={character.attributes.str.score}
-              dex={character.attributes.dex.score}
-              con={character.attributes.con.score}
-              int={character.attributes.int.score}
-              wis={character.attributes.wis.score}
-              cha={character.attributes.cha.score}
-              background={character.background}
-              experiencePoints={character.experiencePoints}
+              name={character.result.name}
+              species={character.result.species}
+              class={character.result.class}
+              vocation={character.result.vocation}
+              str={character.result.attributes.str.score}
+              dex={character.result.attributes.dex.score}
+              con={character.result.attributes.con.score}
+              int={character.result.attributes.int.score}
+              wis={character.result.attributes.wis.score}
+              cha={character.result.attributes.cha.score}
+              background={character.result.background}
+              experiencePoints={character.result.experiencePoints}
             />
             <Divider src={divider} alt="divider" />
             <CharacterWrapper>
               <CharacterContainer>
                 <ClassWrapper>
                   <h1>
-                    {character.species}, {character.vocation}
+                    {character.result.species}, {character.result.vocation}
                   </h1>
 
-                  {character.class === 'Deft' ? (
+                  {character.result.class === 'Deft' ? (
                     <img src={deftIcon} alt="deft" />
-                  ) : character.class === 'Wise' ? (
+                  ) : character.result.class === 'Wise' ? (
                     <img src={wiseIcon} alt="wise" />
-                  ) : character.class === 'Strong' ? (
+                  ) : character.result.class === 'Strong' ? (
                     <img src={strongIcon} alt="strong" />
                   ) : (
                     {}
@@ -100,23 +102,27 @@ const CharacterPage = () => {
                 <AttributesContainer>
                   <h1>Attributes</h1>
                   <ul>
-                    <li>Strength: {character.attributes.str.score}</li>
-                    <li>Dexterity: {character.attributes.dex.score}</li>
-                    <li>Constitution: {character.attributes.con.score}</li>
-                    <li>Intelligence: {character.attributes.int.score}</li>
-                    <li>Wisdom: {character.attributes.wis.score}</li>
-                    <li>Charisma: {character.attributes.cha.score}</li>
+                    <li>Strength: {character.result.attributes.str.score}</li>
+                    <li>Dexterity: {character.result.attributes.dex.score}</li>
+                    <li>
+                      Constitution: {character.result.attributes.con.score}
+                    </li>
+                    <li>
+                      Intelligence: {character.result.attributes.int.score}
+                    </li>
+                    <li>Wisdom: {character.result.attributes.wis.score}</li>
+                    <li>Charisma: {character.result.attributes.cha.score}</li>
                   </ul>
                 </AttributesContainer>
                 <AttributesContainer>
                   <h1>Groups</h1>
                   <ul>
-                    <li>{character.attributes.str.groups}</li>
-                    <li>{character.attributes.dex.groups}</li>
-                    <li>{character.attributes.con.groups}</li>
-                    <li>{character.attributes.int.groups}</li>
-                    <li>{character.attributes.wis.groups}</li>
-                    <li>{character.attributes.cha.groups}</li>
+                    <li>{character.result.attributes.str.groups}</li>
+                    <li>{character.result.attributes.dex.groups}</li>
+                    <li>{character.result.attributes.con.groups}</li>
+                    <li>{character.result.attributes.int.groups}</li>
+                    <li>{character.result.attributes.wis.groups}</li>
+                    <li>{character.result.attributes.cha.groups}</li>
                   </ul>
                 </AttributesContainer>
               </CharacterContainer>
@@ -124,7 +130,7 @@ const CharacterPage = () => {
             <Divider src={divider} alt="divider" />
             <BackgroundContainer>
               <h1>Background</h1>
-              <p>{character.background}</p>
+              <p>{character.result.background}</p>
             </BackgroundContainer>
             <Divider src={divider} alt="divider" />
             <CharacterBtn
