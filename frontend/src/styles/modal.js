@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 
+export const LabelHeader = styled.label`
+  font-weight: bold;
+  line-height: 40px;
+`
+
 export const ClassWrapper = styled.div`
   fieldset {
     border: none;
     margin: 0;
     padding: 0;
+  }
+  legend {
+    font-weight: bold;
   }
 `
 
@@ -49,7 +57,7 @@ export const ClassContainer = styled.div`
 
 export const ScoreGroupsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 65px;
 `
 
 export const AttributesContainer = styled.div`
@@ -57,12 +65,13 @@ export const AttributesContainer = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: inline-grid;
+    align-items: baseline;
+    grid-template-columns: 40px 15% 120%;
+    column-gap: 20px;
   }
   input {
-    width: 25% !important;
+    width: 55% !important;
   }
 `
 
@@ -80,7 +89,7 @@ export const ModalContainer = styled.div`
 `
 
 export const ModalWrapper = styled.div`
-  width: 500px;
+  width: 600px;
   height: 90%;
   background-color: rgb(221, 208, 193);
   border-radius: 2px;
@@ -93,7 +102,7 @@ export const ModalHeader = styled.div`
   justify-content: space-between;
   padding: 0 20px;
   h3 {
-    font-size: 24px;
+    font-size: 30px;
     font-family: 'MedievalSharp', cursive;
     padding-left: 40px;
   }
@@ -104,6 +113,7 @@ export const CloseButton = styled.button`
   margin: 0 !important;
   background: transparent;
   border: 1px solid transparent;
+  cursor: pointer;
   img {
     width: 30px;
     vertical-align: middle;
@@ -128,7 +138,7 @@ export const Form = styled.form`
   width: 80%;
   margin: auto;
   gap: 12px;
-  font-size: 18px;
+  font-size: 20px;
   input {
     width: 100%;
     height: 28px;
@@ -181,6 +191,7 @@ export const ModalButtonWrapper = styled.div`
   button {
     background: transparent;
     border: 1px solid transparent;
+    cursor: pointer;
   }
 
   img {

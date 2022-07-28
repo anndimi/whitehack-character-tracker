@@ -14,6 +14,7 @@ import {
   ModalBody,
   Form,
   ModalButtonWrapper,
+  LabelHeader,
 } from '../styles/modal'
 
 const EditCharacterModal = (props) => {
@@ -148,7 +149,7 @@ const EditCharacterModal = (props) => {
         <ModalBody>
           <Form onSubmit={handleFormSubmit}>
             <div>
-              <label htmlFor="name">Name </label>
+              <LabelHeader htmlFor="name">Name </LabelHeader>
               <input
                 type="text"
                 name="name"
@@ -158,7 +159,7 @@ const EditCharacterModal = (props) => {
             </div>
 
             <div>
-              <label htmlFor="species">Species </label>
+              <LabelHeader htmlFor="species">Species </LabelHeader>
               <input
                 type="text"
                 name="species"
@@ -217,7 +218,7 @@ const EditCharacterModal = (props) => {
             </ClassWrapper>
 
             <div>
-              <label htmlFor="vocation">Vocation </label>
+              <LabelHeader htmlFor="vocation">Vocation </LabelHeader>
               <input
                 type="text"
                 name="vocation"

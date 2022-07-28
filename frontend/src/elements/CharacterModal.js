@@ -13,6 +13,7 @@ import {
   ModalBody,
   Form,
   ModalButtonWrapper,
+  LabelHeader,
 } from '../styles/modal'
 
 const CharacterModal = ({ onClose, showModal, campaignName }) => {
@@ -133,12 +134,12 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
         <ModalBody>
           <Form onSubmit={handleFormSubmit}>
             <div>
-              <label htmlFor="name">Name </label>
+              <LabelHeader htmlFor="name">Name </LabelHeader>
               <input type="text" name="name" required></input>
             </div>
 
             <div>
-              <label htmlFor="species">Species </label>
+              <LabelHeader htmlFor="species">Species </LabelHeader>
               <input type="text" name="species" required></input>
             </div>
 
@@ -186,7 +187,7 @@ const CharacterModal = ({ onClose, showModal, campaignName }) => {
             </ClassWrapper>
 
             <div>
-              <label htmlFor="vocation">Vocation </label>
+              <LabelHeader htmlFor="vocation">Vocation </LabelHeader>
               <input type="text" name="vocation" required></input>
             </div>
             <ScoreGroupsContainer>
