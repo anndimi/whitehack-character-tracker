@@ -1,38 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import { PageContainer } from '../styles/global'
-import CharacterModal from '../elements/CharacterModal'
-import crossIcon from '../assets/icons/cross-icon.png'
-import wiseIcon from '../assets/icons/wise-icon.png'
-import strongIcon from '../assets/icons/strong-icon.png'
-import deftIcon from '../assets/icons/deft-icon.png'
-import divider from '../assets/images/divider.png'
-import { Divider } from '../styles/global'
-import Navbar from '../elements/Navbar'
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import CharacterModal from '../elements/CharacterModal';
+import crossIcon from '../assets/icons/cross-icon.png';
+import wiseIcon from '../assets/icons/wise-icon.png';
+import strongIcon from '../assets/icons/strong-icon.png';
+import deftIcon from '../assets/icons/deft-icon.png';
+import divider from '../assets/images/divider.png';
+import { Divider } from '../styles/global';
+import StandardPageTemplate from '../template/StandardPage';
 
 const CharactersPage = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [characters, setCharacters] = useState([])
-  const { name } = useParams()
+  const [showModal, setShowModal] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  const { name } = useParams();
 
   useEffect(() => {
     fetch(`http://localhost:8080/campaigns/${name}/characters`)
       .then((res) => res.json())
-      .then((data) => setCharacters(data))
-  }, [name])
+      .then((data) => setCharacters(data));
+  }, [name]);
 
   const filteredCharacters = characters.filter(
     (character) => character.isDead === false
-  )
+  );
 
   return (
-    <PageContainer>
-      <Navbar />
+    <StandardPageTemplate>
       <PageWrapper>
         <h1>Summon new hero</h1>
-        <button type="submit" onClick={() => setShowModal(true)}>
-          <AddHeroButtonImg src={crossIcon} alt="add penis" />
+        <button type='submit' onClick={() => setShowModal(true)}>
+          <AddHeroButtonImg src={crossIcon} alt='add penis' />
         </button>
         <CharacterModal
           onClose={() => setShowModal(false)}
@@ -40,7 +38,7 @@ const CharactersPage = () => {
           campaignName={name}
         />
         <CharactersWrapper>
-          <Divider src={divider} alt="divider" />
+          <Divider src={divider} alt='divider' />
           {filteredCharacters.map((character) => (
             <SingleCharacterContainer key={character.id}>
               <Link
@@ -48,11 +46,11 @@ const CharactersPage = () => {
                 onClick={() => window.scrollTo(0, 0)}
               >
                 {character.class === 'Deft' ? (
-                  <img src={deftIcon} alt="deft" />
+                  <img src={deftIcon} alt='deft' />
                 ) : character.class === 'Wise' ? (
-                  <img src={wiseIcon} alt="wise" />
+                  <img src={wiseIcon} alt='wise' />
                 ) : character.class === 'Strong' ? (
-                  <img src={strongIcon} alt="strong" />
+                  <img src={strongIcon} alt='strong' />
                 ) : (
                   {}
                 )}{' '}
@@ -61,14 +59,14 @@ const CharactersPage = () => {
             </SingleCharacterContainer>
           ))}
 
-          <Divider src={divider} alt="divider" />
+          <Divider src={divider} alt='divider' />
         </CharactersWrapper>
       </PageWrapper>
-    </PageContainer>
-  )
-}
+    </StandardPageTemplate>
+  );
+};
 
-export default CharactersPage
+export default CharactersPage;
 
 const PageWrapper = styled.div`
   display: flex;
@@ -91,7 +89,7 @@ const PageWrapper = styled.div`
     background-color: rgb(221, 208, 193);
     cursor: pointer;
   }
-`
+`;
 
 const AddHeroButtonImg = styled.img`
   :hover {
@@ -100,7 +98,7 @@ const AddHeroButtonImg = styled.img`
   :active {
     transform: scale(1);
   }
-`
+`;
 
 const CharactersWrapper = styled.div`
   display: flex;
@@ -109,7 +107,7 @@ const CharactersWrapper = styled.div`
   gap: 15px;
   margin-top: 20px;
   font-size: 18px;
-`
+`;
 
 const SingleCharacterContainer = styled.div`
   display: flex;
@@ -136,4 +134,4 @@ const SingleCharacterContainer = styled.div`
   span {
     line-height: 40px;
   }
-`
+`;

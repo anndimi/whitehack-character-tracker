@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import Navbar from '../elements/Navbar'
-import wiseIcon from '../assets/icons/wise-icon.png'
-import strongIcon from '../assets/icons/strong-icon.png'
-import deftIcon from '../assets/icons/deft-icon.png'
-import { Divider } from '../styles/global'
-import EditCharacterModal from '../elements/EditCharacterModal'
-import divider from '../assets/images/divider.png'
-import quilIcon from '../assets/icons/quil-icon.png'
-import skullIcon from '../assets/icons/skull-icon.png'
-import { PageContainer } from '../styles/global'
-import Swal from 'sweetalert2'
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import wiseIcon from '../assets/icons/wise-icon.png';
+import strongIcon from '../assets/icons/strong-icon.png';
+import deftIcon from '../assets/icons/deft-icon.png';
+import { Divider } from '../styles/global';
+import EditCharacterModal from '../elements/EditCharacterModal';
+import divider from '../assets/images/divider.png';
+import quilIcon from '../assets/icons/quil-icon.png';
+import skullIcon from '../assets/icons/skull-icon.png';
+import Swal from 'sweetalert2';
+import StandardPageTemplate from '../template/StandardPage';
 
 const CharacterPage = () => {
-  const [character, setCharacter] = useState({})
-  const [loading, setLoading] = useState(true)
-  const [showModal, setShowModal] = useState(false)
-  const [characterIsDead, setCharacterIsDead] = useState(false)
-  const { id, name } = useParams()
-  const navigate = useNavigate()
+  const [character, setCharacter] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [characterIsDead, setCharacterIsDead] = useState(false);
+  const { id, name } = useParams();
+  const navigate = useNavigate();
 
   const handleCharDeath = () => {
     const options = {
@@ -28,39 +27,38 @@ const CharacterPage = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ isDead: true }),
-    }
+    };
 
     fetch(`http://localhost:8080/characters/${id}`, options)
       .then((res) => res.json())
       .then((data) => setCharacterIsDead(data.isDead))
-      .then(() => navigate(`/campaigns/${name}/graveyard`))
-  }
+      .then(() => navigate(`/campaigns/${name}/graveyard`));
+  };
 
   useEffect(() => {
     fetch(`http://localhost:8080/characters/${id}`)
       .then((res) => res.json())
       .then((data) => setCharacter(data))
-      .finally(() => setLoading(false))
-  }, [id])
-  console.log(character)
+      .finally(() => setLoading(false));
+  }, [id]);
+  console.log(character);
 
-  console.log('level', character.level)
+  console.log('level', character.level);
 
   return (
     <>
       {JSON.stringify(character) === JSON.stringify({}) ? (
         <div>yo</div>
       ) : (
-        <PageContainer>
-          <Navbar />
+        <StandardPageTemplate>
           <PageWrapper>
             <h1 style={{ textAlign: 'center' }}>
               {character.result.name}, {character.result.experiencePoints} XP,
               level {character.level}
             </h1>
 
-            <CharacterBtn type="submit" onClick={() => setShowModal(true)}>
-              <img src={quilIcon} alt="edit hero" />
+            <CharacterBtn type='submit' onClick={() => setShowModal(true)}>
+              <img src={quilIcon} alt='edit hero' />
             </CharacterBtn>
             <span>Edit Hero</span>
 
@@ -80,7 +78,7 @@ const CharacterPage = () => {
               background={character.result.background}
               experiencePoints={character.result.experiencePoints}
             />
-            <Divider src={divider} alt="divider" />
+            <Divider src={divider} alt='divider' />
             <CharacterWrapper>
               <CharacterContainer>
                 <ClassWrapper>
@@ -89,11 +87,11 @@ const CharacterPage = () => {
                   </h1>
 
                   {character.result.class === 'Deft' ? (
-                    <img src={deftIcon} alt="deft" />
+                    <img src={deftIcon} alt='deft' />
                   ) : character.result.class === 'Wise' ? (
-                    <img src={wiseIcon} alt="wise" />
+                    <img src={wiseIcon} alt='wise' />
                   ) : character.result.class === 'Strong' ? (
-                    <img src={strongIcon} alt="strong" />
+                    <img src={strongIcon} alt='strong' />
                   ) : (
                     {}
                   )}
@@ -127,12 +125,12 @@ const CharacterPage = () => {
                 </AttributesContainer>
               </CharacterContainer>
             </CharacterWrapper>
-            <Divider src={divider} alt="divider" />
+            <Divider src={divider} alt='divider' />
             <BackgroundContainer>
               <h1>Background</h1>
               <p>{character.result.background}</p>
             </BackgroundContainer>
-            <Divider src={divider} alt="divider" />
+            <Divider src={divider} alt='divider' />
             <CharacterBtn
               onClick={() => {
                 Swal.fire({
@@ -146,23 +144,23 @@ const CharacterPage = () => {
                   background: 'rgb(221, 208, 193)',
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    handleCharDeath()
+                    handleCharDeath();
                   }
-                })
+                });
               }}
-              type="submit"
+              type='submit'
             >
-              <img src={skullIcon} alt="kill hero" />
+              <img src={skullIcon} alt='kill hero' />
             </CharacterBtn>
             <span>Kill Hero</span>
           </PageWrapper>
-        </PageContainer>
+        </StandardPageTemplate>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CharacterPage
+export default CharacterPage;
 
 const BackgroundContainer = styled.div`
   width: 80%;
@@ -174,13 +172,12 @@ const BackgroundContainer = styled.div`
     font-size: 20px;
     white-space: pre-line;
   }
-`
+`;
 
 const CharacterBtn = styled.button`
-background: transparent;
-border: 1px solid transparent;
-cursor: pointer;
-  }
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
   img {
     :hover {
       transform: scale(1.09);
@@ -189,7 +186,7 @@ cursor: pointer;
       transform: scale(1);
     }
   }
-`
+`;
 
 const PageWrapper = styled.div`
   display: flex;
@@ -197,17 +194,17 @@ const PageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-`
+`;
 
 const CharacterWrapper = styled.div`
   width: 80%;
   max-width: 1000px;
-`
+`;
 
 const CharacterContainer = styled.div`
   display: flex;
   justify-content: space-around;
-`
+`;
 
 const AttributesContainer = styled.div`
   ul {
@@ -215,7 +212,7 @@ const AttributesContainer = styled.div`
     padding: 0;
     font-size: 20px;
   }
-`
+`;
 
 const ClassWrapper = styled.div`
   display: flex;
@@ -226,4 +223,4 @@ const ClassWrapper = styled.div`
     max-width: 50px;
     align-self: center;
   }
-`
+`;
