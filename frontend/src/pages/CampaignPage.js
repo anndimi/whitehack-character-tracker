@@ -1,79 +1,75 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Navbar from '../elements/Navbar'
-import styled from 'styled-components'
-import divider from '../assets/images/divider.png'
-import { Divider } from '../styles/global'
-import quilIcon from '../assets/icons/quil-icon.png'
-import sealImg from '../assets/images/seal-img.png'
-import StoryEntryModal from '../elements/StoryEntryModal'
-import { PageContainer } from '../styles/global'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import divider from '../assets/images/divider.png';
+import { Divider } from '../styles/global';
+import quilIcon from '../assets/icons/quil-icon.png';
+import sealImg from '../assets/images/seal-img.png';
+import StoryEntryModal from '../elements/StoryEntryModal';
+import StandardPageTemplate from '../template/StandardPage';
 
 const CampaignPage = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [campaign, setCampaign] = useState({})
-  const [journals, setJournals] = useState([])
-  const [characters, setCharacters] = useState([])
-  const { name } = useParams()
-  const dayjs = require('dayjs')
+  const [showModal, setShowModal] = useState(false);
+  const [campaign, setCampaign] = useState({});
+  const [journals, setJournals] = useState([]);
+  const [characters, setCharacters] = useState([]);
+  const { name } = useParams();
+  const dayjs = require('dayjs');
 
   useEffect(() => {
     fetch(`http://localhost:8080/campaigns/${name}`)
       .then((res) => res.json())
-      .then((data) => setCampaign(data))
-  }, [name])
+      .then((data) => setCampaign(data));
+  }, [name]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/campaigns/${name}/journals`)
       .then((res) => res.json())
-      .then((data) => setJournals(data))
-  }, [name])
+      .then((data) => setJournals(data));
+  }, [name]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/campaigns/${name}/characters`)
       .then((res) => res.json())
       .then((data) => setCharacters(data))
-      .then(() => console.log(characters))
-  }, [name])
+      .then(() => console.log(characters));
+  }, [name]);
 
   return (
-    <>
-      <Navbar />
-      <PageContainer>
-        <h1>{name}</h1>
-        <AddEntryButton onClick={() => setShowModal(true)}>
-          <img src={quilIcon} alt="add campaign entry" />
-        </AddEntryButton>
-        New Entry
-        <StoryEntryModal
-          onClose={() => setShowModal(false)}
-          showModal={showModal}
-          campaignName={name}
-          characters={characters}
-        />
-        {journals.length === 0 ? (
-          <Divider src={divider} alt="divider" />
-        ) : (
-          <CampaignWrapper>
-            {[...journals].reverse().map((journal) => (
-              <JournalsContainer key={journal.id}>
-                <Divider src={divider} alt="divider" />
-                <h4>{dayjs(journal.createdAt).format('DD MMMM')}</h4>
-                <p>{journal.body}</p>
-                <EntrySignature>
-                  <SealImg src={sealImg} />
-                  <span>{journal.signature}</span>
-                </EntrySignature>
-              </JournalsContainer>
-            ))}
-          </CampaignWrapper>
-        )}
-      </PageContainer>
-    </>
-  )
-}
+    <StandardPageTemplate>
+      <h1>{name}</h1>
+      <AddEntryButton onClick={() => setShowModal(true)}>
+        <img src={quilIcon} alt='add campaign entry' />
+      </AddEntryButton>
+      New Entry
+      <StoryEntryModal
+        onClose={() => setShowModal(false)}
+        showModal={showModal}
+        campaignName={name}
+        characters={characters}
+      />
+      {journals.length === 0 ? (
+        <Divider src={divider} alt='divider' />
+      ) : (
+        <CampaignWrapper>
+          {[...journals].reverse().map((journal) => (
+            <JournalsContainer key={journal.id}>
+              <Divider src={divider} alt='divider' />
+              <h4>{dayjs(journal.createdAt).format('DD MMMM')}</h4>
+              <p>{journal.body}</p>
+              <EntrySignature>
+                <SealImg src={sealImg} />
+                <span>{journal.signature}</span>
+              </EntrySignature>
+            </JournalsContainer>
+          ))}
+        </CampaignWrapper>
+      )}
+    </StandardPageTemplate>
+  );
+};
 
-export default CampaignPage
+export default CampaignPage;
 
 const JournalsContainer = styled.div`
   display: flex;
@@ -92,14 +88,14 @@ const JournalsContainer = styled.div`
     font-family: 'Splash', cursive;
     font-weight: normal;
   }
-`
+`;
 
 const CampaignWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
-`
+`;
 
 const AddEntryButton = styled.button`
   display: flex;
@@ -117,7 +113,7 @@ const AddEntryButton = styled.button`
       transform: scale(1);
     }
   }
-`
+`;
 
 const EntrySignature = styled.div`
   display: flex;
@@ -129,9 +125,9 @@ const EntrySignature = styled.div`
     font-size: 30px;
     line-height: 100px;
   }
-`
+`;
 
 const SealImg = styled.img`
   width: 100%;
   max-width: 100px;
-`
+`;
